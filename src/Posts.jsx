@@ -18,4 +18,9 @@ class Posts extends PureComponent {
     }
 }
 
+const ConnectedPosts = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Posts)
+
 export default Posts
