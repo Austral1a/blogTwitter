@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import {Card} from 'antd'
 
@@ -32,7 +33,9 @@ class Posts extends PureComponent {
                                 title={post.title}
                                 key={post.id + id}
                             >
-                                <p>Author: {userNameByPostId(this.props.users, post.userId)}</p>
+                                <p>Author: {<Link to={`/users/${post.userId}/posts`}>
+                                    {userNameByPostId(this.props.users, post.userId)}</Link>}
+                                </p>
                                 <p>{post.body}</p>
                             </Card>
                         )
