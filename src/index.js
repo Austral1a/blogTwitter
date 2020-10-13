@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import ConnectedUsers from "./Users/Users";
+import ConnectedPosts from './Posts'
 import {Provider} from 'react-redux'
 import store from './Store/index'
 import './styles/general.scss'
@@ -12,6 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
         <div className='main-container'>
             <ConnectedUsers />
+            <ConnectedPosts />
         </div>
     </Provider>
   </React.StrictMode>,
