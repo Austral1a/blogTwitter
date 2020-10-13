@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react'
 import {getUsersActionCreator} from "../Store/actions/getUsers";
 import {connect} from 'react-redux'
 import {List} from "antd";
+import {Link} from "react-router-dom";
+import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users
@@ -10,6 +12,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getUsers: () => {
         dispatch(getUsersActionCreator())
+    },
+    getCurrUserId: (id) => {
+        dispatch(getCurrUserIdActionCreator(id))
     }
 })
 
@@ -24,7 +29,7 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header="All Users"
+                header={<Link to='/posts'>All Users</Link>}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
@@ -34,7 +39,9 @@ class Users extends PureComponent {
                 renderItem={(user) => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="/">{user.name}</a>}
+                            title={<Link
+                                onClick={() => this.props.getCurrUserId(user.id)}
+                                to={`/users/${user.id}/posts`}>{user.name}</Link>}
                             description={user.email}
                         />
                     </List.Item>
