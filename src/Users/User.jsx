@@ -1,6 +1,11 @@
 import React from 'react'
 
-const User = () => {
+const User = ({
+                  username,
+                  name,
+                  phone,
+                  website
+              }) => {
     return ()
 }
 
