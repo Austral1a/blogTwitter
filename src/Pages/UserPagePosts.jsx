@@ -16,6 +16,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 class UserPagePosts extends PureComponent {
 
+    componentDidMount() {
+        // default val of currUserId is null, so after reloading currUserId is takes from localStorage
+        this.props.getUserPosts(this.props.currUserId || localStorage.getItem('curr_user_id'))
+    }
+
+
     render() {
         return (
             <>
