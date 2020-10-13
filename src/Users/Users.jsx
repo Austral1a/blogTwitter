@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 
-const Users = () => {
-    return ()
+class Users extends PureComponent {
+    render() {
+        return ()
+    }
 }
+
 export default Users
