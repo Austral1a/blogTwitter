@@ -14,6 +14,11 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class Posts extends PureComponent {
+
+    componentDidMount() {
+        this.props.getAllPosts()
+    }
+
     render() {
         return('')
     }
