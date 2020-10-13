@@ -12,6 +12,11 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class Users extends PureComponent {
+
+    componentDidMount() {
+        this.props.getUsers()
+    }
+
     render() {
         return ()
     }
