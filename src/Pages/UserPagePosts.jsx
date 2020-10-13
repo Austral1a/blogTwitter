@@ -21,6 +21,12 @@ class UserPagePosts extends PureComponent {
         this.props.getUserPosts(this.props.currUserId || localStorage.getItem('curr_user_id'))
     }
 
+    // when current user id is changed, please re-render the component to correspond new id
+    componentDidUpdate(prevProps) {
+        if(prevProps.currUserId !== this.props.currUserId) {
+            this.props.getUserPosts(this.props.currUserId)
+        }
+    }
 
     render() {
         return (
