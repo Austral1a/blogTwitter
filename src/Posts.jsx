@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import {Card} from 'antd'
 
+import userNameByPostId from './helpers/userNameByPostId'
+
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
     users: state.getUsersReducer.users
@@ -30,7 +32,7 @@ class Posts extends PureComponent {
                                 title={post.title}
                                 key={post.id + id}
                             >
-                                <p>Author: </p>
+                                <p>Author: {userNameByPostId(this.props.users, post.userId)}</p>
                                 <p>{post.body}</p>
                             </Card>
                         )
