@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
+import {Card} from 'antd'
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
@@ -20,7 +21,23 @@ class Posts extends PureComponent {
     }
 
     render() {
-        return('')
+        return(
+            <div className='posts-container'>
+                {
+                    Object.values(this.props.posts).map((post, id) => {
+                        return (
+                            <Card
+                                title={post.title}
+                                key={post.id + id}
+                            >
+                                <p>Author: </p>
+                                <p>{post.body}</p>
+                            </Card>
+                        )
+                    })
+                }
+            </div>
+        )
     }
 }
 
