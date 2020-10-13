@@ -5,6 +5,12 @@ const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users
 })
 
+const mapDispatchToProps = (dispatch) => ({
+    getUsers: () => {
+        dispatch(getUsersActionCreator())
+    }
+})
+
 class Users extends PureComponent {
     render() {
         return ()
