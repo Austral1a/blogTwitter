@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import {Card} from 'antd'
 import {connect} from 'react-redux'
 import getUserPostsActionCreator from '../Store/actions/getUserPosts'
 
@@ -14,8 +15,26 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class UserPagePosts extends PureComponent {
+
     render() {
-        return ('')
+        return (
+            <>
+                <div className='posts-container'>
+                    {
+                        Object.values(this.props.posts).map((post, id) => {
+                            return (
+                                <Card
+                                    title={post.title}
+                                    key={post.id + id}
+                                >
+                                    <p>{post.body}</p>
+                                </Card>
+                            )
+                        })
+                    }
+                </div>
+            </>
+        )
     }
 }
 
