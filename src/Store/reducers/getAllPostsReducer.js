@@ -1,4 +1,4 @@
-import {GET_ALL_POSTS} from '.../actions/action-types'
+import {GET_ALL_POSTS} from '../actions/action-types'
 
 const initState = {
     posts: {}
