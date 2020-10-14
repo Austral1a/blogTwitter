@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import isUserSignedInActionCreator from '../Store/actions/isUserSignedIn'
 import {getUsersActionCreator} from "../Store/actions/getUsers";
 import {connect} from 'react-redux'
 import {List} from "antd";
@@ -6,7 +7,8 @@ import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 
 const mapStateToProps = (state) => ({
-    users: state.getUsersReducer.users
+    users: state.getUsersReducer.users,
+    isUserSignedIn: state.isUserSignedInReducer.isSignedIn
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getCurrUserId: (id) => {
         dispatch(getCurrUserIdActionCreator(id))
+    },
+    isUserSignedInCheck: () => {
+        dispatch(isUserSignedInActionCreator())
     }
 })
 
@@ -22,6 +27,7 @@ class Users extends PureComponent {
 
     componentDidMount() {
         this.props.getUsers()
+        this.props.isUserSignedInCheck()
     }
 
     render() {
