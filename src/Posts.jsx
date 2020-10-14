@@ -2,18 +2,23 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
-import {Card} from 'antd'
+import getPostCommentsActionCreator from './Store/actions/getPostComments'
+import {Card, Collapse, Divider} from 'antd'
 
 import userNameByPostId from './helpers/userNameByPostId'
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
-    users: state.getUsersReducer.users
+    users: state.getUsersReducer.users,
+    comments: state.getPostCommentsReducer.comments
 })
 
 const mapDispatchToProps = (dispatch) => ({
     getAllPosts: () => {
         dispatch(getAllPostsActionCreator())
+    },
+    getPostComments: (postId) => {
+        dispatch(getPostCommentsActionCreator(postId))
     }
 })
 
