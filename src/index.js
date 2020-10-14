@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import firebase from 'firebase'
 import * as serviceWorker from './serviceWorker';
 import ConnectedUsers from "./Users/Users";
 import ConnectedPosts from './Posts'
@@ -9,11 +10,28 @@ import store from './Store/index'
 import './styles/general.scss'
 import './styles/main-container.scss'
 import ConnectedUserPagePosts from "./Pages/UserPagePosts";
+import AuthGoogle from './Components/Auth/AuthGoogle'
+
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: "blog-98e20.firebaseapp.com",
+    databaseURL: "https://blog-98e20.firebaseio.com",
+    projectId: "blog-98e20",
+    storageBucket: "blog-98e20.appspot.com",
+    messagingSenderId: "786012935670",
+    appId: "1:786012935670:web:160d15d04220533c75a3d7"
+};
+
+firebase.initializeApp(firebaseConfig)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
         <Router>
+            <div className='auth-container'>
+                <h2>Sign-In</h2>
+                <AuthGoogle />
+            </div>
             <div className='main-container'>
                 <ConnectedUsers />
                 <Switch>
