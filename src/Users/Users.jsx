@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {List} from "antd";
 import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
+import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
@@ -35,7 +36,7 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={<Link to='/posts'>All Users</Link>}
+                header={[<Link to='/posts'>All Users</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
