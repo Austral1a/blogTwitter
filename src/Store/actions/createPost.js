@@ -5,7 +5,7 @@ const createPostAction = (post) => ({
     post
 })
 
-const createPostActionCreator = (title, body, userId) => {
+const createPostActionCreator = (posts, title, body, userId) => {
     return (dispatch) => {
         fetch(`https://jsonplaceholder.typicode.com/posts`, {
             method: 'POST',
@@ -19,7 +19,7 @@ const createPostActionCreator = (title, body, userId) => {
             },
         })
             .then((res) => res.json())
-            .then((json) => dispatch(createPostAction(json)))
+            .then((json) => dispatch(createPostAction(posts.concat(json))))
     }
 }
 
