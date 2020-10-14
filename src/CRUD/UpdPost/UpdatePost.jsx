@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import updPostActionCreator from '../../Store/actions/updPost'
+import {Drawer, Button, Form, Col, Row, Input} from 'antd'
+import {EditOutlined} from "@ant-design/icons";
 
 
 const mapStateToProps = (state) => ({
@@ -41,7 +43,25 @@ class UpdatePost extends PureComponent {
     }
 
     render() {
-        return('')
+        const {isDrawerVisible, newTitle, newBody} = this.state
+        return(
+            <>
+                <Button
+                    type='dashed'
+                    shape='circle'
+                    onClick={this.showDrawer}
+                    icon={<EditOutlined style={{ fontSize: '16px', color: '#1DA1F2' }} />}
+                />
+                <Drawer
+                    title={`Update post with ${this.props.postId} id`}
+                    width={500}
+                    onClose={this.onClose}
+                    visible={isDrawerVisible}
+                >
+
+                </Drawer>
+            </>
+        )
     }
 
 
