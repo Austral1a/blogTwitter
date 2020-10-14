@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react'
-import PostComments from './PostComments'
+import CommentsSection from './CommentsSection'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import getPostCommentsActionCreator from './Store/actions/getPostComments'
-import {Card, Collapse, Divider} from 'antd'
+import {Card} from 'antd'
 
 import userNameByPostId from './helpers/userNameByPostId'
 
@@ -43,24 +43,10 @@ class Posts extends PureComponent {
                                     {userNameByPostId(this.props.users, post.userId)}</Link>}
                                 </p>
                                 <p>{post.body}</p>
-                                <Collapse onChange={() => this.props.getPostComments(post.id)} bordered={false}>
-                                    <Collapse.Panel key={post.name + id}  header='Comments'>
-                                        {
-                                            Object.values(this.props.comments).map((comment, id) => {
-                                                return (
-                                                    <React.Fragment key={comment.id + id}>
-                                                        <PostComments
-                                                            title={comment.name}
-                                                            body={comment.body}
-                                                            email={comment.email}
-                                                        />
-                                                        <Divider />
-                                                    </React.Fragment>
-                                                )
-                                            })
-                                        }
-                                    </Collapse.Panel>
-                                </Collapse>
+                                <CommentsSection
+                                    post={post}
+                                    comments={this.props.comments}
+                                    onChange={() => this.props.getPostComments(post.id)} />
                             </Card>
                         )
                     })
