@@ -33,4 +33,4 @@ const ConnectedAuthGoogle = connect(
     mapDispatchToProps
 )(AuthGoogle)
 
-export default AuthGoogle
+export default ConnectedAuthGoogle
