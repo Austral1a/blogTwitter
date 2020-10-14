@@ -46,7 +46,28 @@ class CreatePostDrawer extends PureComponent {
     };
 
     render() {
-        return()
+        return(
+            <div style={{margin: 'auto'}}>
+                <Popover
+                    placement='bottomLeft'
+                    content={
+                        <>
+                        </>
+                        }
+                    title="New post"
+                    trigger="click"
+                    visible={this.state.visible}
+                    onVisibleChange={this.handleVisibleChange}
+                >
+                    <Button
+                        type="primary"
+                        shape="circle"
+                        style={{backgroundColor: '#1DA1F2'}}
+                        icon={<DiffOutlined />}
+                    />
+                </Popover>
+            </div>
+        )
     }
 }
 
