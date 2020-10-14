@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import PostComments from './PostComments'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
@@ -44,6 +45,20 @@ class Posts extends PureComponent {
                                 <p>{post.body}</p>
                                 <Collapse onChange={() => this.props.getPostComments(post.id)} bordered={false}>
                                     <Collapse.Panel key={post.name + id}  header='Comments'>
+                                        {
+                                            Object.values(this.props.comments).map((comment, id) => {
+                                                return (
+                                                    <React.Fragment key={comment.id + id}>
+                                                        <PostComments
+                                                            title={comment.name}
+                                                            body={comment.body}
+                                                            email={comment.email}
+                                                        />
+                                                        <Divider />
+                                                    </React.Fragment>
+                                                )
+                                            })
+                                        }
                                     </Collapse.Panel>
                                 </Collapse>
                             </Card>
