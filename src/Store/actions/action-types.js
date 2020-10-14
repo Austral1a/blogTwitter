@@ -7,3 +7,5 @@ export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const UPD_POST = 'UPD_POST'
 // Delete Post Operation
 export const DEL_POST = 'DEL_POST'
+// Create Post
+export const CREATE_POST = 'CREATE_POST'
