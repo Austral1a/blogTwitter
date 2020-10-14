@@ -9,7 +9,8 @@ import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
-    isUserSignedIn: state.isUserSignedInReducer.isSignedIn
+    isUserSignedIn: state.isUserSignedInReducer.isSignedIn,
+    posts: state.getAllPostsReducer.posts
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,7 +37,9 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link to='/posts'>All Users</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer /> : null]}
+                header={[<Link to='/posts'>All Users</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer
+                                                                                    posts={this.props.posts}
+                                                                                    userId={this.props.users.length + 1} /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
