@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import CommentsSection from '../CommentsSection'
 import getUserPostsActionCreator from '../Store/actions/getUserPosts'
 import getPostCommentsActionCreator from "../Store/actions/getPostComments";
-import UpdatePost from '../CRUD/Post/UpdatePost'
+import PostToolbar from '../CRUD/Post/PostToolbar'
+import delPostActionCreator from '../Store/actions/delPost'
 
 const mapStateToProps = (state) => ({
     posts: state.getUserPostsReducer.posts,
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getPostComments: (postId) => {
         dispatch(getPostCommentsActionCreator(postId))
+    },
+    delPost: (posts, postId) => {
+        dispatch(delPostActionCreator(posts, postId))
     }
 })
 
@@ -52,11 +56,12 @@ class UserPagePosts extends PureComponent {
                                                 && this.props.updatedPost.title
                                                 ? this.props.updatedPost.title : post.title}
                                         key={post.name}
-                                        extra={<UpdatePost
+                                        extra={<PostToolbar
                                             title={post.title}
                                             body={post.body}
                                             posts={this.props.posts}
                                             postId={post.id}
+                                            delPost={() => this.props.delPost(this.props.posts, post.id)}
                                         />}
                                         >
                                         <p>{// the same as above but with body rather than title

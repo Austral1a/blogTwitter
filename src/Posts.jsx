@@ -5,9 +5,8 @@ import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import getPostCommentsActionCreator from './Store/actions/getPostComments'
 import {Card} from 'antd'
-import UpdatePost from './CRUD/Post/UpdatePost'
-
-
+import PostToolbar from './CRUD/Post/PostToolbar'
+import delPostActionCreator from './Store/actions/delPost'
 import userNameByPostId from './helpers/userNameByPostId'
 
 const mapStateToProps = (state) => ({
@@ -23,6 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getPostComments: (postId) => {
         dispatch(getPostCommentsActionCreator(postId))
+    },
+    delPost: (posts, postId) => {
+        dispatch(delPostActionCreator(posts, postId))
     }
 })
 
@@ -48,11 +50,12 @@ class Posts extends PureComponent {
                                             && this.props.updatedPost.title
                                             ? this.props.updatedPost.title : post.title}
                                     key={post.title}
-                                    extra={<UpdatePost
+                                    extra={<PostToolbar
                                         title={post.title}
                                         body={post.body}
                                         posts={this.props.posts}
                                         postId={post.id}
+                                        delPost={() => this.props.delPost(this.props.posts, post.id)}
                                     />}
 
                                 >

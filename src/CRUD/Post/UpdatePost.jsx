@@ -2,8 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import updPostActionCreator from '../../Store/actions/updPost'
 import {Drawer, Button, Form, Col, Row, Input} from 'antd'
-import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
-import delPostActionCreator from '../../Store/actions/delPost'
+import {EditOutlined} from "@ant-design/icons";
 
 const mapStateToProps = (state) => ({
     updatedPost: state.updPostReducer.updatedPost
@@ -12,9 +11,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     updPost: (postId, title, body) => {
         dispatch(updPostActionCreator(postId, title, body))
-    },
-    delPost: (posts, postId) => {
-        dispatch(delPostActionCreator(posts, postId))
     }
 })
 
@@ -40,7 +36,6 @@ class UpdatePost extends PureComponent {
 
     onSubmit = (e) => {
         this.props.updPost(this.props.postId, this.state.newTitle, this.state.newBody)
-        console.log(this.props.updatedPost)
         this.onClose()
         e.preventDefault()
     }
@@ -109,13 +104,6 @@ class UpdatePost extends PureComponent {
                         </Row>
                     </Form>
                 </Drawer>
-                <Button
-                    type='dashed'
-                    shape='circle'
-                    icon={<DeleteOutlined style={{ fontSize: '16px', color: '#1DA1F2' }} />}
-                    onClick={() => {
-                    this.props.delPost(this.props.posts, this.props.postId)
-                }}/>
             </>
         )
     }
