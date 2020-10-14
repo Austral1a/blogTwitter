@@ -1,8 +1,8 @@
 import {CREATE_POST} from './action-types'
 
-const createPostAction = (post) => ({
+const createPostAction = (posts) => ({
     type: CREATE_POST,
-    post
+    posts
 })
 
 const createPostActionCreator = (posts, title, body, userId) => {
