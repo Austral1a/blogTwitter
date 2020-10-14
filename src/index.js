@@ -10,6 +10,7 @@ import store from './Store/index'
 import './styles/general.scss'
 import './styles/main-container.scss'
 import ConnectedUserPagePosts from "./Pages/UserPagePosts";
+import AuthGoogle from './Components/Auth/AuthGoogle'
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -27,6 +28,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
         <Router>
+            <div className='auth-container'>
+                <h2>Sign-In</h2>
+                <AuthGoogle />
+            </div>
             <div className='main-container'>
                 <ConnectedUsers />
                 <Switch>
