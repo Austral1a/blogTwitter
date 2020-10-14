@@ -27,6 +27,23 @@ class CreatePostDrawer extends PureComponent {
         }
     }
 
+    onChangeTitle = (e) => {
+        this.setState({title: e.target.value})
+    }
+
+    onChangeBody = (e) => {
+        this.setState({body: e.target.value})
+    }
+
+    hide = () => {
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleVisibleChange = visible => {
+        this.setState({ visible });
+    };
 
     render() {
         return()
