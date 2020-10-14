@@ -16,7 +16,13 @@ class AuthGoogle extends PureComponent {
     render() {
         return (
             <>
-
+                <Divider />
+                <Button
+                    type='dashed'
+                    shape='circle'
+                    onClick={authWithGoogle}
+                    icon={<GoogleOutlined style={{color: '#1DA1F2', fontSize: '1.5em'}} />}
+                />
             </>
         )
     }
