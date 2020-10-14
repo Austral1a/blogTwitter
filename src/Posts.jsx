@@ -42,6 +42,10 @@ class Posts extends PureComponent {
                                     {userNameByPostId(this.props.users, post.userId)}</Link>}
                                 </p>
                                 <p>{post.body}</p>
+                                <Collapse onChange={() => this.props.getPostComments(post.id)} bordered={false}>
+                                    <Collapse.Panel key={post.name + id}  header='Comments'>
+                                    </Collapse.Panel>
+                                </Collapse>
                             </Card>
                         )
                     })
