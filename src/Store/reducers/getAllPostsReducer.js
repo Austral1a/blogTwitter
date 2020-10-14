@@ -1,4 +1,4 @@
-import {GET_ALL_POSTS, DEL_POST} from '../actions/action-types'
+import {GET_ALL_POSTS, DEL_POST, CREATE_POST} from '../actions/action-types'
 
 const initState = {
     posts: {}
@@ -13,6 +13,10 @@ const getAllPostsReducer = (state = initState, action) => {
                 posts: action.posts
             })
         case DEL_POST:
+            return Object.assign({}, state, {
+                posts: action.posts
+            })
+        case CREATE_POST:
             return Object.assign({}, state, {
                 posts: action.posts
             })
