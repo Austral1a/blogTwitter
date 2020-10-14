@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import getPostCommentsActionCreator from './Store/actions/getPostComments'
 import {Card} from 'antd'
+import UpdatePost from './CRUD/UpdPost/UpdatePost'
 
 import userNameByPostId from './helpers/userNameByPostId'
 
@@ -45,6 +46,11 @@ class Posts extends PureComponent {
                                         && this.props.updatedPost.title
                                         ? this.props.updatedPost.title : post.title}
                                 key={post.id + id}
+                                extra={<UpdatePost
+                                    title={post.title}
+                                    body={post.body}
+                                    postId={post.id}
+                                />}
                             >
                                 <p>Author: {<Link to={`/users/${post.userId}/posts`}>
                                     {userNameByPostId(this.props.users, post.userId)}</Link>}
