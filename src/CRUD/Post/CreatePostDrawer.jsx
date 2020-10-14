@@ -46,12 +46,21 @@ class CreatePostDrawer extends PureComponent {
     };
 
     render() {
+        const {title, body} = this.state
+        const {createPost, posts, userId} = this.props
         return(
             <div style={{margin: 'auto'}}>
                 <Popover
                     placement='bottomLeft'
                     content={
                         <>
+                            <CreatePostForm
+                                titleState={title}
+                                bodyState={body}
+                                onChangeTitle={(e) => this.onChangeTitle(e)}
+                                onChangeBody={(e) => this.onChangeBody(e)}
+                                onFinish={() => createPost(posts, title, body, userId)} />
+                            <a onClick={this.hide}>Close</a>
                         </>
                         }
                     title="New post"
