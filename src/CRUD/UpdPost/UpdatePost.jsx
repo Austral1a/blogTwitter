@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import updPostActionCreator from '../../Store/actions/updPost'
 
+
 const mapStateToProps = (state) => ({
     updatedPost: state.updPostReducer.updatedPost
 })
@@ -24,6 +25,20 @@ class UpdatePost extends PureComponent {
         }
     }
 
+    onClose = () => {
+        this.setState({isDrawerVisible: false})
+    }
+
+    showDrawer = () =>  {
+        this.setState({isDrawerVisible: true})
+    }
+
+    onSubmit = (e) => {
+        this.props.updPost(this.props.postId, this.state.newTitle, this.state.newBody)
+        console.log(this.props.updatedPost)
+        this.onClose()
+        e.preventDefault()
+    }
 
     render() {
         return('')
