@@ -58,7 +58,53 @@ class UpdatePost extends PureComponent {
                     onClose={this.onClose}
                     visible={isDrawerVisible}
                 >
-
+                    <Form
+                        layout='vertical'
+                        hideRequiredMark
+                        onFinish={this.onSubmit}
+                    >
+                        <Row gutter={14}>
+                            <Col span={10}>
+                                <Form.Item
+                                    name='title'
+                                    label='Title'
+                                    rules={[{ required: true, message: 'Please enter new title' }]}
+                                >
+                                    <Input
+                                        placeholder="Please enter new title"
+                                        value={newTitle}
+                                        onChange={(e) => this.setState({newTitle: e.target.value})}
+                                    />
+                                </Form.Item>
+                            </Col>
+                            <Col span={14}>
+                                <Form.Item
+                                    name='body'
+                                    label='Body'
+                                    rules={[{ required: true, message: 'Please enter new body' }]}
+                                >
+                                    <Input.TextArea
+                                        rows={4}
+                                        placeholder="Please enter new body"
+                                        value={newBody}
+                                        onChange={(e) => this.setState({newBody: e.target.value})}
+                                    />
+                                </Form.Item>
+                                <Row gutter={14}>
+                                    <Col span={8}>
+                                        <Button onClick={this.onClose} style={{ marginRight: 8 }}>
+                                            Cancel
+                                        </Button>
+                                    </Col>
+                                    <Col span={8}>
+                                        <Button onClick={this.onSubmit} type="primary">
+                                            Submit
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Form>
                 </Drawer>
             </>
         )
