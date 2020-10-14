@@ -12,12 +12,15 @@
 
   .users-container {
     width: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-height: inherit;
   }
 
   .posts-container {
-    max-width: 500px;
-    overflow: scroll;
+    max-width: 520px;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-height: inherit;
 
     & > * {
