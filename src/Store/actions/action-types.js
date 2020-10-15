@@ -10,3 +10,4 @@ export const DEL_POST = 'DEL_POST'
 // Create Post
 export const CREATE_POST = 'CREATE_POST'
 export const IS_USER_SIGNED_IN = 'IS_USER_SIGNED_IN'
+export const CREATE_USER = 'CREATE_USER'
