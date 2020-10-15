@@ -88,7 +88,10 @@ UserPagePosts.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     currUserId: PropTypes.string,
     comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    getUserPosts: PropTypes.func.isRequired,
+    getPostComments: PropTypes.func.isRequired,
+    delPost: PropTypes.func.isRequired
 }
 
 const ConnectedUserPagePosts = connect(
