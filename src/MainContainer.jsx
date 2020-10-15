@@ -7,10 +7,10 @@ import ConnectedPosts from "./Posts";
 import ConnectedUserPagePosts from "./Pages/UserPagePosts";
 import firebase from 'firebase'
 import {Button} from 'antd'
-
 import {ThemeProvider} from 'styled-components'
 import {GlobalStyles} from './globalStyles'
 import {lightTheme, darkTheme} from './themes'
+import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
@@ -83,6 +83,10 @@ class MainContainer extends PureComponent {
             </ThemeProvider>
         )
     }
+}
+
+MainContainer.propTypes = {
+    isUserSignedIn: PropTypes.bool.isRequired
 }
 
 const ConnectedMainContainer = connect(
