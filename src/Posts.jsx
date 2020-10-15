@@ -49,7 +49,7 @@ class Posts extends PureComponent {
                                     title={this.props.updatedPost.id === post.id
                                             && this.props.updatedPost.title
                                             ? this.props.updatedPost.title : post.title}
-                                    key={post.title}
+                                    key={id + Math.random()}
                                     extra={<PostToolbar
                                         title={post.title}
                                         body={post.body}
