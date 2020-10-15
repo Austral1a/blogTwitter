@@ -4,7 +4,7 @@ import CreatePostForm from './CreatePostForm'
 import {Popover, Button} from 'antd';
 import {DiffOutlined} from '@ant-design/icons'
 import createPostActionCreator from '../../Store/actions/createPost'
-
+import PropTypes from 'prop-types'
 
 const mapDispatchToProps = (dispatch) => ({
     createPost: (userPosts, posts, title, body, userId) => {
@@ -75,6 +75,10 @@ class CreatePostDrawer extends PureComponent {
             </div>
         )
     }
+}
+
+CreatePostDrawer.propTypes = {
+    createPost: PropTypes.func.isRequired
 }
 
 const ConnectedCreatePostDrawer = connect(
