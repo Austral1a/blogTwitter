@@ -1,6 +1,7 @@
 import React from 'react'
 import PostComments from './PostComments'
 import {Collapse, Divider} from 'antd'
+import PropTypes from 'prop-types'
 
 const CommentsSection = ({
     post,
@@ -27,6 +28,12 @@ const CommentsSection = ({
             </Collapse.Panel>
         </Collapse>
     )
+}
+
+CommentsSection.propTypes = {
+    post: PropTypes.object,
+    comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    onChange: PropTypes.func.isRequired
 }
 
 export default CommentsSection
