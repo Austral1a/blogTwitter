@@ -4,6 +4,7 @@ import {Button, Divider} from 'antd'
 import {GoogleOutlined} from '@ant-design/icons'
 import '../../styles/auth-container.scss'
 import createUserActionCreator from '../../Store/actions/createUser'
+import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
@@ -36,6 +37,12 @@ class AuthGoogle extends PureComponent {
             </>
         )
     }
+}
+
+AuthGoogle.propTypes = {
+    users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    isUserSignedIn: PropTypes.bool,
+    createUser: PropTypes.func.isRequired
 }
 
 const ConnectedAuthGoogle = connect(
