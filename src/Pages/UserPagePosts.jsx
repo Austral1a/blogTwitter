@@ -6,6 +6,7 @@ import getUserPostsActionCreator from '../Store/actions/getUserPosts'
 import getPostCommentsActionCreator from "../Store/actions/getPostComments";
 import PostToolbar from '../CRUD/Post/PostToolbar'
 import delPostActionCreator from '../Store/actions/delPost'
+import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     posts: state.getUserPostsReducer.posts,
@@ -81,6 +82,13 @@ class UserPagePosts extends PureComponent {
             </>
         )
     }
+}
+
+UserPagePosts.propTypes = {
+    posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    currUserId: PropTypes.string,
+    comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 const ConnectedUserPagePosts = connect(
