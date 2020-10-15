@@ -45,7 +45,12 @@ class MainContainer extends PureComponent {
         this.setState({theme: localStorage.getItem('theme')})
     }
 
-
+    componentDidUpdate(_, prevState) {
+        if(prevState.theme !== this.state.theme) {
+            // set current theme mode to localStorage
+            localStorage.setItem('theme',  this.state.theme)
+        }
+    }
 
     render() {
         return(
