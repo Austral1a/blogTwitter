@@ -76,8 +76,8 @@ class Posts extends PureComponent {
 Posts.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    comments: PropTypes.object,
-    updatedPost: PropTypes.object,
+    comments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    updatedPost: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 }
 
 const ConnectedPosts = connect(
