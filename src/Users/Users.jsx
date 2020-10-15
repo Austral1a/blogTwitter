@@ -43,10 +43,11 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link key={Math.random()} to='/posts'>All Users</Link>, <ConnectedCreatePostDrawer
+                header={[<Link key={Math.random()} to='/posts'>All Users</Link>, this.props.isUserSignedIn ?
+                    <ConnectedCreatePostDrawer
                     key={Math.random()}
                     userPosts={this.props.userPosts}
-                    userId={11} />]}
+                    userId={11} /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
