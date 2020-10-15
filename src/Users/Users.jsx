@@ -34,7 +34,7 @@ class Users extends PureComponent {
 
     componentDidMount() {
         this.props.getUsers()
-        this.props.getUserPosts(11)
+        this.props.getUserPosts(this.props.users.length)
         this.props.isUserSignedInCheck()
     }
 
@@ -47,7 +47,7 @@ class Users extends PureComponent {
                     <ConnectedCreatePostDrawer
                     key={Math.random()}
                     userPosts={this.props.userPosts}
-                    userId={11} /> : null]}
+                    userId={this.props.users.length} /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
