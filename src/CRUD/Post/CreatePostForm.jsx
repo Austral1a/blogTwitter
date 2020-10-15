@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Button, Form, Input} from "antd";
+import PropTypes from 'prop-types'
 
 const CreatePostForm = ({
     onFinish,
@@ -67,6 +68,14 @@ const CreatePostForm = ({
             </Form.Item>
         </Form>
     )
+}
+
+CreatePostForm.propTypes = {
+    onFinish: PropTypes.func.isRequired,
+    titleState: PropTypes.string.isRequired,
+    bodyState: PropTypes.string.isRequired,
+    onChangeTitle: PropTypes.func.isRequired,
+    onChangeBody: PropTypes.func.isRequired,
 }
 
 export default CreatePostForm
