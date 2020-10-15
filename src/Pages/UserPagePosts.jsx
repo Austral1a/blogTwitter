@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {Card} from 'antd'
+import {Card, Empty} from 'antd'
 import {connect} from 'react-redux'
 import CommentsSection from '../CommentsSection'
 import getUserPostsActionCreator from '../Store/actions/getUserPosts'
@@ -45,7 +45,7 @@ class UserPagePosts extends PureComponent {
             <>
                 <div className='posts-container'>
                     {
-                        Object.values(this.props.posts).map((post, id) => {
+                        this.props.posts.length > 0 ? Object.values(this.props.posts).map((post, id) => {
                             return (
                                 post.id ?
                                     <Card       // Since resource will not be really updated on the server but it will be faked as if.
@@ -75,7 +75,7 @@ class UserPagePosts extends PureComponent {
                                         />
                                     </Card> : null
                             )
-                        })
+                        }): <Empty description={'There are no posts'} />
                     }
                 </div>
             </>
