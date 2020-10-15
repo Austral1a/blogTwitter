@@ -1,4 +1,4 @@
-import {DEL_POST, GET_USER_POSTS} from '../actions/action-types'
+import {CREATE_POST, DEL_POST, GET_USER_POSTS} from '../actions/action-types'
 
 const initState = {
     posts: {}
@@ -15,6 +15,10 @@ const getUserPostsReducer = (state = initState, action) => {
         case DEL_POST:
             return Object.assign({}, state, {
                 posts: action.posts
+            })
+        case CREATE_POST:
+            return Object.assign({}, state, {
+                posts: action.userPosts
             })
         default:
             return state
