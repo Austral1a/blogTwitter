@@ -10,8 +10,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    createPost: (posts, title, body, userId) => {
-        dispatch(createPostActionCreator(posts, title, body, userId))
+    createPost: (userPosts, posts, title, body, userId) => {
+        dispatch(createPostActionCreator(userPosts, posts, title, body, userId))
     }
 })
 
@@ -47,7 +47,7 @@ class CreatePostDrawer extends PureComponent {
 
     render() {
         const {title, body} = this.state
-        const {createPost, posts, userId} = this.props
+        const {createPost, posts, userId, userPosts} = this.props
         return(
             <div style={{margin: 'auto'}}>
                 <Popover
@@ -59,7 +59,7 @@ class CreatePostDrawer extends PureComponent {
                                 bodyState={body}
                                 onChangeTitle={(e) => this.onChangeTitle(e)}
                                 onChangeBody={(e) => this.onChangeBody(e)}
-                                onFinish={() => createPost(posts, title, body, userId)} />
+                                onFinish={() => createPost(userPosts, posts, title, body, userId)} />
                             <a onClick={this.hide}>Close</a>
                         </>
                         }

@@ -1,11 +1,12 @@
 import {CREATE_POST} from './action-types'
 
-const createPostAction = (posts) => ({
+const createPostAction = (userPosts, posts) => ({
     type: CREATE_POST,
-    posts
+    posts: posts || [],
+    userPosts: userPosts || []
 })
 
-const createPostActionCreator = (posts, title, body, userId) => {
+const createPostActionCreator = (userPosts, posts, title, body, userId) => {
     return (dispatch) => {
         fetch(`https://jsonplaceholder.typicode.com/posts`, {
             method: 'POST',
@@ -19,7 +20,9 @@ const createPostActionCreator = (posts, title, body, userId) => {
             },
         })
             .then((res) => res.json())
-            .then((json) => dispatch(createPostAction(posts.concat(json))))
+            .then((json) => {
+                dispatch(createPostAction(userPosts.concat(json), posts.concat(json)))
+            })
     }
 }
 

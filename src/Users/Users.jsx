@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
 import isUserSignedInActionCreator from '../Store/actions/isUserSignedIn'
 import {getUsersActionCreator} from "../Store/actions/getUsers";
+import getUserPostsActionCreator from '../Store/actions/getUserPosts'
 import {connect} from 'react-redux'
 import {List} from "antd";
 import {Link} from "react-router-dom";
@@ -10,7 +11,8 @@ import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn,
-    posts: state.getAllPostsReducer.posts
+    posts: state.getAllPostsReducer.posts,
+    userPosts: state.getUserPostsReducer.posts
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     isUserSignedInCheck: () => {
         dispatch(isUserSignedInActionCreator())
+    },
+    getUserPosts: (userId) => {
+        dispatch(getUserPostsActionCreator(userId))
     }
 })
 
@@ -29,6 +34,7 @@ class Users extends PureComponent {
 
     componentDidMount() {
         this.props.getUsers()
+        this.props.getUserPosts(11)
         this.props.isUserSignedInCheck()
     }
 
@@ -37,9 +43,10 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link to='/posts'>All Users</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer
-                                                                                    posts={this.props.posts}
-                                                                                    userId={this.props.users.length + 1} /> : null]}
+                header={[<Link key={Math.random()} to='/posts'>All Users</Link>, <ConnectedCreatePostDrawer
+                    key={Math.random()}
+                    userPosts={this.props.userPosts}
+                    userId={11} />]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
