@@ -1,6 +1,7 @@
 import React from "react";
 import {Button} from "antd";
 import {DeleteOutlined} from "@ant-design/icons";
+import PropTypes from 'prop-types'
 
 const DelPost = ({
     posts,
@@ -17,6 +18,12 @@ const DelPost = ({
                 delPost(posts, postId)}}
         />
     )
+}
+
+DelPost.propTypes = {
+    posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    postId: PropTypes.number.isRequired,
+    delPost: PropTypes.func.isRequired
 }
 
 export default DelPost
