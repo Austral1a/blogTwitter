@@ -86,7 +86,7 @@ class UserPagePosts extends PureComponent {
 
 UserPagePosts.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    currUserId: PropTypes.string,
+    currUserId: PropTypes.number,
     comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     getUserPosts: PropTypes.func.isRequired,
