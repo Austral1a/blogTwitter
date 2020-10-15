@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react'
 import CommentsSection from './CommentsSection'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import getAllPostsActionCreator from './Store/actions/getAllPosts'
 import getPostCommentsActionCreator from './Store/actions/getPostComments'
 import {Card} from 'antd'
 import PostToolbar from './CRUD/Post/PostToolbar'
@@ -17,9 +16,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllPosts: () => {
-        dispatch(getAllPostsActionCreator())
-    },
     getPostComments: (postId) => {
         dispatch(getPostCommentsActionCreator(postId))
     },
@@ -30,9 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Posts extends PureComponent {
 
-    componentDidMount() {
-        this.props.getAllPosts()
-    }
 
     render() {
         return(
