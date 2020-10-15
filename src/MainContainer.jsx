@@ -30,6 +30,12 @@ class MainContainer extends PureComponent {
     }
 
 
+    themeToggler = () => {
+        this.state.theme === 'light' ?
+            this.setState({theme: 'dark'}) : this.setState({theme: 'light'})
+    }
+
+
     render() {
         return(
             <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
