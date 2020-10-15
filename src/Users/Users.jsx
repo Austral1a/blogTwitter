@@ -7,6 +7,7 @@ import {List} from "antd";
 import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
+import getAllPostsActionCreator from "../Store/actions/getAllPosts";
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
@@ -27,14 +28,22 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getUserPosts: (userId) => {
         dispatch(getUserPostsActionCreator(userId))
-    }
+    },
+    getAllPosts: () => {
+        dispatch(getAllPostsActionCreator())
+    },
 })
 
 class Users extends PureComponent {
 
+    exe = async () => {
+        await this.props.getUsers()
+        await this.props.getAllPosts()
+        await this.props.getUserPosts(this.props.users.length)
+    }
+
     componentDidMount() {
-        this.props.getUsers()
-        this.props.getUserPosts(this.props.users.length)
+        this.exe()
         this.props.isUserSignedInCheck()
     }
 
@@ -46,6 +55,7 @@ class Users extends PureComponent {
                 header={[<Link key={Math.random()} to='/posts'>All Users</Link>, this.props.isUserSignedIn ?
                     <ConnectedCreatePostDrawer
                     key={Math.random()}
+                    posts={this.props.posts}
                     userPosts={this.props.userPosts}
                     userId={this.props.users.length} /> : null]}
                 // dataSource is array for list
