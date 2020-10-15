@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const PostComments = ({
     title,
@@ -12,6 +13,12 @@ const PostComments = ({
             <p>{body}</p>
         </>
     )
+}
+
+PostComments.propTypes = {
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
 }
 
 export default PostComments
