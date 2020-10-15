@@ -36,6 +36,11 @@
     max-height: 1080px;
     height: 1080px;
     flex-direction: column;
+    .users-container {
+      max-height: 40%;
+      height: 100%;
+      width: 100%;
+    }
 
   }
 }
