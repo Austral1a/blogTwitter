@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import updPostActionCreator from '../../Store/actions/updPost'
 import {Drawer, Button, Form, Col, Row, Input} from 'antd'
 import {EditOutlined} from "@ant-design/icons";
+import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     updatedPost: state.updPostReducer.updatedPost
@@ -109,6 +110,11 @@ class UpdatePost extends PureComponent {
     }
 
 
+}
+
+UpdatePost.propTypes = {
+    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    updPost: PropTypes.func.isRequired
 }
 
 const ConnectedUpdatePost = connect(
