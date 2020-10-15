@@ -5,6 +5,7 @@ import ConnectedUsers from "./Users/Users";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import ConnectedPosts from "./Posts";
 import ConnectedUserPagePosts from "./Pages/UserPagePosts";
+import firebase from 'firebase'
 import {Button} from 'antd'
 
 import {ThemeProvider} from 'styled-components'
@@ -34,6 +35,16 @@ class MainContainer extends PureComponent {
         this.state.theme === 'light' ?
             this.setState({theme: 'dark'}) : this.setState({theme: 'light'})
     }
+
+    // cause user doesnt actually creates
+    // user signing out after mounting whole app, i.e on page reload
+    componentDidMount() {
+        firebase.auth().signOut()
+
+        // get current theme mode from localStorage
+        this.setState({theme: localStorage.getItem('theme')})
+    }
+
 
 
     render() {
