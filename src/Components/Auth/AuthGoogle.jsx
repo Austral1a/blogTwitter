@@ -19,7 +19,17 @@ const mapDispatchToProps = (dispatch) => ({
 class AuthGoogle extends PureComponent {
 
     render() {
-        return ()
+        return (
+            <>
+                <Divider />
+                <Button
+                    type='dashed'
+                    shape='circle'
+                    onClick={this.handleClick}
+                    icon={<GoogleOutlined style={{color: '#1DA1F2', fontSize: '1.5em'}} />}
+                />
+            </>
+        )
     }
 }
 
