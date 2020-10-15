@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
 import getAllPostsActionCreator from "../Store/actions/getAllPosts";
+import PropTypes from 'prop-types'
+import {User} from "firebase";
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
@@ -79,6 +81,18 @@ class Users extends PureComponent {
             />
         )
     }
+}
+
+Users.propTypes = {
+    users: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    isUserSignedIn: PropTypes.bool,
+    posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    userPosts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    getUsers: PropTypes.func.isRequired,
+    getCurrUserId: PropTypes.func.isRequired,
+    isUserSignedInCheck: PropTypes.func.isRequired,
+    getUserPosts: PropTypes.func.isRequired,
+    getAllPosts: PropTypes.func.isRequired,
 }
 
 const ConnectedUsers = connect(
