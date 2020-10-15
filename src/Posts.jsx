@@ -7,6 +7,7 @@ import {Card} from 'antd'
 import PostToolbar from './CRUD/Post/PostToolbar'
 import delPostActionCreator from './Store/actions/delPost'
 import userNameByPostId from './helpers/userNameByPostId'
+import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
@@ -70,6 +71,13 @@ class Posts extends PureComponent {
             </div>
         )
     }
+}
+
+Posts.propTypes = {
+    posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    comments: PropTypes.object,
+    updatedPost: PropTypes.object,
 }
 
 const ConnectedPosts = connect(
