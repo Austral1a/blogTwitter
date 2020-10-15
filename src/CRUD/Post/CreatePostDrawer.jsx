@@ -5,9 +5,6 @@ import {Popover, Button} from 'antd';
 import {DiffOutlined} from '@ant-design/icons'
 import createPostActionCreator from '../../Store/actions/createPost'
 
-const mapStateToProps = (state) => ({
-    posts: state.getAllPostsReducer.posts
-})
 
 const mapDispatchToProps = (dispatch) => ({
     createPost: (userPosts, posts, title, body, userId) => {
@@ -81,7 +78,7 @@ class CreatePostDrawer extends PureComponent {
 }
 
 const ConnectedCreatePostDrawer = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(CreatePostDrawer)
 
