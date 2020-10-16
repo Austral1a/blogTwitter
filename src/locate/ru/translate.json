@@ -1,0 +1,20 @@
+{
+  "translations": {
+    "usersSection": {
+      "allUsers": "Все пользователи"
+    },
+    "postsSection": {
+      "author": "Автор",
+      "comments": "Коментарии",
+      "updPost": {
+        "title": "Заголовок",
+        "body": "Основная часть"
+      }
+    },
+    "btnActions": {
+      "close": "Закрыть",
+      "submit": "Подвердить",
+      "cancel": "Отменить"
+    }
+  }
+}
