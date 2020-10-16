@@ -1,0 +1,20 @@
+{
+  "translations": {
+    "usersSection": {
+      "allUsers": "All Users"
+    },
+    "postsSection": {
+      "author": "Author",
+      "comments": "Comments",
+      "updPost": {
+        "title": "Title",
+        "body": "Body"
+      }
+    },
+    "btnActions": {
+      "close": "Close",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
+  }
+}
