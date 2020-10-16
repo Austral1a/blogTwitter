@@ -1,15 +1,30 @@
-import React from 'react'
+import React, {useMemo} from 'react'
+import {connect} from 'react-redux'
 import PostComments from './PostComments'
-import {Collapse, Divider} from 'antd'
+import {Divider, Collapse} from 'antd'
 import PropTypes from 'prop-types'
+import getPostCommentsActionCreator from "./Store/actions/getPostComments";
+
+
+const mapStateToProps = (state) => ({
+    comments: state.getPostCommentsReducer.comments
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getPostComments: (postId) => {
+        dispatch(getPostCommentsActionCreator(postId))
+    }
+})
 
 const CommentsSection = ({
     post,
+    postId,
     comments,
-    onChange
+    getPostComments
 }) => {
+
     return(
-        <Collapse onChange={onChange} bordered={false}>
+        <Collapse onChange={() => getPostComments(postId)} bordered={false}>
             <Collapse.Panel key={post.name} header='Comments'>
                 {
                     Object.values(comments).map((comment, id) => {
@@ -36,4 +51,9 @@ CommentsSection.propTypes = {
     onChange: PropTypes.func.isRequired
 }
 
-export default CommentsSection
+const ConnectedCommentsSection = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CommentsSection)
+
+export default ConnectedCommentsSection

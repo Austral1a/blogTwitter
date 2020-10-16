@@ -7,7 +7,7 @@ const getPostCommentsAction = (comments) => ({
 
 const getPostCommentsActionCreator = (postId) => {
     return (dispatch) => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
             .then((response) => response.json())
             .then((json) => dispatch(getPostCommentsAction(json)))
     }

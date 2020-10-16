@@ -7,9 +7,8 @@ import {List} from "antd";
 import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
-import getAllPostsActionCreator from "../Store/actions/getAllPosts";
+
 import PropTypes from 'prop-types'
-import {User} from "firebase";
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
@@ -30,17 +29,13 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getUserPosts: (userId) => {
         dispatch(getUserPostsActionCreator(userId))
-    },
-    getAllPosts: () => {
-        dispatch(getAllPostsActionCreator())
-    },
+    }
 })
 
 class Users extends PureComponent {
 
     exe = async () => {
         await this.props.getUsers()
-        await this.props.getAllPosts()
         await this.props.getUserPosts(this.props.users.length)
     }
 
