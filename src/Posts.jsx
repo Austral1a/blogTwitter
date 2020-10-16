@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import getPostCommentsActionCreator from './Store/actions/getPostComments'
 import delPostActionCreator from './Store/actions/delPost'
 import PropTypes from 'prop-types'
 import getAllPostsActionCreator from "./Store/actions/getAllPosts";
 import Post from './Post'
+import {Empty} from "antd";
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
@@ -37,18 +37,19 @@ class Posts extends Component {
         return(
             <div className='posts-container'>
                 {
-                    Object.values(posts).map((post, id) => {
+                    posts.length > 0 ? Object.values(posts).map((post, id) => {
                         return (
-                            <Post
-                                posts={posts}
-                                post={post}
-                                id={id}
-                                users={users}
-                                updatedPost={updatedPost}
-                                delPost={delPost}
-                            />
+                                <Post
+                                    key={Math.random()}
+                                    posts={posts}
+                                    post={post}
+                                    id={id}
+                                    users={users}
+                                    updatedPost={updatedPost}
+                                    delPost={delPost}
+                                />
                         )
-                    })
+                    }): <Empty description='There are no posts' />
                 }
             </div>
         )
