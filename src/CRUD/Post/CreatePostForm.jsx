@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Button, Form, Input} from "antd";
 import PropTypes from 'prop-types'
+import {withTranslation} from 'react-i18next'
 
 const CreatePostForm = ({
     onFinish,
@@ -8,6 +9,7 @@ const CreatePostForm = ({
     bodyState,
     onChangeTitle,
     onChangeBody,
+    t
 }) => {
 
     const layout = {
@@ -35,12 +37,12 @@ const CreatePostForm = ({
             onFinish={onFinish}
         >
             <Form.Item
-                label="Title"
+                label={t('postsSection.newPost.title')}
                 name="title"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input title!',
+                        message: t('postsSection.newPost.ruleTitle'),
                     },
                 ]}
             >
@@ -48,12 +50,12 @@ const CreatePostForm = ({
             </Form.Item>
 
             <Form.Item
-                label="Body"
+                label={t('postsSection.newPost.body')}
                 name="body"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input body!',
+                        message: t('postsSection.newPost.ruleBody'),
                     },
                 ]}
             >
@@ -63,7 +65,7 @@ const CreatePostForm = ({
 
             <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit">
-                    Submit
+                    {t('btnActions.submit')}
                 </Button>
             </Form.Item>
         </Form>
@@ -78,4 +80,6 @@ CreatePostForm.propTypes = {
     onChangeBody: PropTypes.func.isRequired,
 }
 
-export default CreatePostForm
+const CreatePostWithTranslation = withTranslation()(CreatePostForm)
+
+export default CreatePostWithTranslation
