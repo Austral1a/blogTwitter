@@ -12,7 +12,6 @@ import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
-    isUserSignedIn: state.isUserSignedInReducer.isSignedIn,
     posts: state.getAllPostsReducer.posts,
     userPosts: state.getUserPostsReducer.posts
 })
@@ -34,13 +33,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Users extends PureComponent {
 
-    exe = async () => {
-        await this.props.getUsers()
-        await this.props.getUserPosts(this.props.users.length)
-    }
-
     componentDidMount() {
-        this.exe()
+        this.props.getUsers()
         this.props.isUserSignedInCheck()
     }
 
@@ -50,7 +44,7 @@ class Users extends PureComponent {
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, this.props.isUserSignedIn ?<ConnectedCreatePostDrawer
+                header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer
                     key={Math.random()}
                     posts={this.props.posts}
                     userPosts={this.props.userPosts}
