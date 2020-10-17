@@ -7,7 +7,7 @@ import {List} from "antd";
 import {Link} from "react-router-dom";
 import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
 import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
-
+import {withTranslation} from 'react-i18next'
 import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
@@ -45,12 +45,12 @@ class Users extends PureComponent {
     }
 
     render() {
+        const {t} = this.props
         return (
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link key={Math.random()} to='/posts'>All Users</Link>, this.props.isUserSignedIn ?
-                    <ConnectedCreatePostDrawer
+                header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, this.props.isUserSignedIn ?<ConnectedCreatePostDrawer
                     key={Math.random()}
                     posts={this.props.posts}
                     userPosts={this.props.userPosts}
@@ -93,6 +93,6 @@ Users.propTypes = {
 const ConnectedUsers = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Users)
+)(withTranslation()(Users))
 
 export default ConnectedUsers
