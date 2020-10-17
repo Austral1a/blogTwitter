@@ -7,7 +7,7 @@ const getAllPosts = (posts) => ({
 
 export const getAllPostsActionCreator = () => {
     return (dispatch) => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`)
+        fetch('http://localhost:3000/posts')
             .then(res => res.json())
             .then(json => dispatch(getAllPosts(json)))
     }
