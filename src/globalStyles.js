@@ -12,6 +12,9 @@ export const GlobalStyles = createGlobalStyle`
     div {
          background: ${({ theme }) => theme.body} !important;
     }
+    div.ant-switch-handle {
+      background: none !important;
+    }
     button {
          background: ${({ theme }) => theme.btnBackground} !important;
     }
