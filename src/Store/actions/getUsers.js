@@ -7,7 +7,7 @@ const getUsers = (users) => ({
 
 export const getUsersActionCreator = () => {
     return (dispatch) => {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('http://localhost:3000/users')
             .then(res => res.json())
             .then(json => dispatch(getUsers(json)))
     }
