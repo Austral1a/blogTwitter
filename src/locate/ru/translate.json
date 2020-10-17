@@ -1,14 +1,29 @@
 {
   "translations": {
+    "mainSection": {
+      "signIn": "Войти",
+      "switchTheme": "Сменить Тему"
+    },
     "usersSection": {
       "allUsers": "Все пользователи"
     },
     "postsSection": {
       "author": "Автор",
       "comments": "Коментарии",
+      "noPosts": "Постов нету",
       "updPost": {
         "title": "Заголовок",
-        "body": "Основная часть"
+        "body": "Основная часть",
+        "ruleTitle": "Введите новый заголовок",
+        "ruleBody": "Введите новую основную часть",
+        "desc": "Обновление поста с {{id}} id"
+      },
+      "newPost": {
+        "popoverTitle": "Новый Пост",
+        "title": "Заголовок",
+        "body": "Основная Часть",
+        "ruleTitle": "Введите новый заголовок!",
+        "ruleBody": "Введите новую основную часть!"
       }
     },
     "btnActions": {
