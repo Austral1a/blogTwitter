@@ -13,7 +13,8 @@ import PropTypes from 'prop-types'
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
     posts: state.getAllPostsReducer.posts,
-    userPosts: state.getUserPostsReducer.posts
+    userPosts: state.getUserPostsReducer.posts,
+    isUserSignedUp: state.createUserReducer.isUserNew
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,6 +37,13 @@ class Users extends PureComponent {
     componentDidMount() {
         this.props.getUsers()
         this.props.isUserSignedInCheck()
+    }
+
+   // re-load users if some user is just signed-up
+    componentDidUpdate(prevProps) {
+        if(prevProps.isUserSignedUp !== this.props.isUserSignedUp) {
+            this.props.getUsers()
+        }
     }
 
     render() {
