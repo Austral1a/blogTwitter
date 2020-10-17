@@ -7,7 +7,7 @@ const getUserPosts = (posts) => ({
 
 export const getUserPostsActionCreator = (userId) => {
     return (dispatch) => {
-        fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+        fetch(`http://localhost:3000/posts/?userId=${userId}`)
             .then(res => res.json())
             .then(json => dispatch(getUserPosts(json)))
     }
