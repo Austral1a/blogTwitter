@@ -6,9 +6,11 @@ import getCurrUserIdReducer from './getCurrUserIdReducer'
 import getPostCommentsReducer from './getPostCommentsReducer'
 import updPostReducer from './updPostReducer'
 import isUserSignedInReducer from './isUserSignedInReducer'
+import createUserReducer from "./createUserReducer";
 
 export const rootReducer = combineReducers({
     getUsersReducer,
+    createUserReducer,
     getAllPostsReducer,
     getUserPostsReducer,
     getCurrUserIdReducer,
