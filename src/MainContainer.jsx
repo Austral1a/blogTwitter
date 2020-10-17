@@ -10,7 +10,9 @@ import {Button} from 'antd'
 import {ThemeProvider} from 'styled-components'
 import {GlobalStyles} from './globalStyles'
 import {lightTheme, darkTheme} from './themes'
+import LanguageSwitcher from './LanguageSwitcher'
 import PropTypes from 'prop-types'
+import {withTranslation} from 'react-i18next'
 
 const mapStateToProps = (state) => ({
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
@@ -53,6 +55,7 @@ class MainContainer extends PureComponent {
     }
 
     render() {
+        const {t} = this.props
         return(
             <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
                 <GlobalStyles />
@@ -60,12 +63,13 @@ class MainContainer extends PureComponent {
                     {
                         !this.props.isUserSignedIn ?
                             <div className='auth-container'>
-                                <h2>Sign-In</h2>
+                                <h2>{t('mainSection.signIn')}</h2>
                                 <AuthGoogle />
                             </div> : null
                     }
+                    <LanguageSwitcher i18n={this.props.i18n} />
                     <Button type='primary' onClick={this.themeToggler}>
-                        Switch Theme
+                        {t('mainSection.switchTheme')}
                     </Button>
                     <div className='main-container'>
                         <ConnectedUsers />
@@ -92,6 +96,6 @@ MainContainer.propTypes = {
 const ConnectedMainContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(MainContainer)
+)(withTranslation()(MainContainer))
 
 export default ConnectedMainContainer

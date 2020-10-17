@@ -1,0 +1,35 @@
+{
+  "translations": {
+    "mainSection": {
+      "signIn": "Sign-In",
+      "switchTheme": "Switch Theme"
+    },
+    "usersSection": {
+      "allUsers": "All Users"
+    },
+    "postsSection": {
+      "author": "Author",
+      "comments": "Comments",
+      "noPosts": "There are no posts",
+      "updPost": {
+        "title": "Title",
+        "body": "Body",
+        "ruleTitle": "Please enter new title",
+        "ruleBody": "Please enter new body",
+        "desc": "Update post with {{id}} id"
+      },
+      "newPost": {
+        "popoverTitle": "New Post",
+        "title": "Title",
+        "body": "Body",
+        "ruleTitle": "Please input title!",
+        "ruleBody": "Please input body!"
+      }
+    },
+    "btnActions": {
+      "close": "Close",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
+  }
+}

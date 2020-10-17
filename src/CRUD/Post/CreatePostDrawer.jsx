@@ -5,6 +5,7 @@ import {Popover, Button} from 'antd';
 import {DiffOutlined} from '@ant-design/icons'
 import createPostActionCreator from '../../Store/actions/createPost'
 import PropTypes from 'prop-types'
+import {withTranslation} from 'react-i18next'
 
 const mapDispatchToProps = (dispatch) => ({
     createPost: (userPosts, posts, title, body, userId) => {
@@ -44,7 +45,7 @@ class CreatePostDrawer extends PureComponent {
 
     render() {
         const {title, body} = this.state
-        const {createPost, posts, userId, userPosts} = this.props
+        const {createPost, posts, userId, userPosts, t} = this.props
         return(
             <div style={{margin: 'auto'}}>
                 <Popover
@@ -57,10 +58,10 @@ class CreatePostDrawer extends PureComponent {
                                 onChangeTitle={(e) => this.onChangeTitle(e)}
                                 onChangeBody={(e) => this.onChangeBody(e)}
                                 onFinish={() => createPost(userPosts, posts, title, body, userId)} />
-                            <a onClick={this.hide}>Close</a>
+                            <a onClick={this.hide}>{t('btnActions.close')}</a>
                         </>
                         }
-                    title="New post"
+                    title={t('postsSection.newPost.popoverTitle')}
                     trigger="click"
                     visible={this.state.visible}
                     onVisibleChange={this.handleVisibleChange}
@@ -84,6 +85,6 @@ CreatePostDrawer.propTypes = {
 const ConnectedCreatePostDrawer = connect(
     null,
     mapDispatchToProps
-)(CreatePostDrawer)
+)(withTranslation()(CreatePostDrawer))
 
 export default ConnectedCreatePostDrawer

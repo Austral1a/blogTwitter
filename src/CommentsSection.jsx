@@ -4,7 +4,7 @@ import PostComments from './PostComments'
 import {Divider, Collapse} from 'antd'
 import PropTypes from 'prop-types'
 import getPostCommentsActionCreator from "./Store/actions/getPostComments";
-
+import {withTranslation} from 'react-i18next'
 
 const mapStateToProps = (state) => ({
     comments: state.getPostCommentsReducer.comments
@@ -20,12 +20,13 @@ const CommentsSection = ({
     post,
     postId,
     comments,
-    getPostComments
+    getPostComments,
+    t
 }) => {
 
     return(
         <Collapse onChange={() => getPostComments(postId)} bordered={false}>
-            <Collapse.Panel key={post.name} header='Comments'>
+            <Collapse.Panel key={post.name} header={t('postsSection.comments')}>
                 {
                     Object.values(comments).map((comment, id) => {
                         return (
@@ -54,6 +55,6 @@ CommentsSection.propTypes = {
 const ConnectedCommentsSection = connect(
     mapStateToProps,
     mapDispatchToProps
-)(CommentsSection)
+)( withTranslation()(CommentsSection))
 
 export default ConnectedCommentsSection
