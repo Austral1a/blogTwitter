@@ -4,6 +4,7 @@ import updPostActionCreator from '../../Store/actions/updPost'
 import {Drawer, Button, Form, Col, Row, Input} from 'antd'
 import {EditOutlined} from "@ant-design/icons";
 import PropTypes from 'prop-types'
+import {withTranslation} from 'react-i18next'
 
 const mapStateToProps = (state) => ({
     updatedPost: state.updPostReducer.updatedPost
@@ -43,6 +44,7 @@ class UpdatePost extends PureComponent {
 
     render() {
         const {isDrawerVisible, newTitle, newBody} = this.state
+        const {t} = this.props
         return(
             <>
                 <Button
@@ -52,7 +54,7 @@ class UpdatePost extends PureComponent {
                     icon={<EditOutlined style={{ fontSize: '16px', color: '#1DA1F2' }} />}
                 />
                 <Drawer
-                    title={`Update post with ${this.props.postId} id`}
+                    title={t('postsSection.updPost.desc', {id: this.props.postId})}
                     width={500}
                     onClose={this.onClose}
                     visible={isDrawerVisible}
@@ -66,11 +68,11 @@ class UpdatePost extends PureComponent {
                             <Col span={10}>
                                 <Form.Item
                                     name='title'
-                                    label='Title'
-                                    rules={[{ required: true, message: 'Please enter new title' }]}
+                                    label={t('postsSection.updPost.title')}
+                                    rules={[{ required: true, message: t('postsSection.updPost.ruleTitle') }]}
                                 >
                                     <Input
-                                        placeholder="Please enter new title"
+                                        placeholder={t('postsSection.updPost.ruleTitle')}
                                         value={newTitle}
                                         onChange={(e) => this.setState({newTitle: e.target.value})}
                                     />
@@ -79,12 +81,12 @@ class UpdatePost extends PureComponent {
                             <Col span={14}>
                                 <Form.Item
                                     name='body'
-                                    label='Body'
-                                    rules={[{ required: true, message: 'Please enter new body' }]}
+                                    label={t('postsSection.updPost.body')}
+                                    rules={[{ required: true, message: t('postsSection.updPost.ruleBody') }]}
                                 >
                                     <Input.TextArea
                                         rows={4}
-                                        placeholder="Please enter new body"
+                                        placeholder={t('postsSection.updPost.ruleBody')}
                                         value={newBody}
                                         onChange={(e) => this.setState({newBody: e.target.value})}
                                     />
@@ -92,12 +94,12 @@ class UpdatePost extends PureComponent {
                                 <Row gutter={14}>
                                     <Col span={8}>
                                         <Button onClick={this.onClose} style={{ marginRight: 8 }}>
-                                            Cancel
+                                            {t('btnActions.close')}
                                         </Button>
                                     </Col>
                                     <Col span={8}>
                                         <Button onClick={this.onSubmit} type="primary">
-                                            Submit
+                                            {t('btnActions.submit')}
                                         </Button>
                                     </Col>
                                 </Row>
@@ -120,6 +122,6 @@ UpdatePost.propTypes = {
 const ConnectedUpdatePost = connect(
     mapStateToProps,
     mapDispatchToProps
-)(UpdatePost)
+)(withTranslation()(UpdatePost))
 
 export default ConnectedUpdatePost
