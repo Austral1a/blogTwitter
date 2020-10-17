@@ -1,14 +1,12 @@
 import React from 'react'
 import ConnectedCommentsSection from './CommentsSection'
-
 import {Link} from 'react-router-dom'
-
 import {Card} from 'antd'
 import PostToolbar from './CRUD/Post/PostToolbar'
-
+import {withTranslation} from 'react-i18next'
 import userNameByPostId from './helpers/userNameByPostId'
 
-const Post = ({posts, post, id, users, updatedPost, delPost}) => {
+const Post = ({posts, post, id, users, updatedPost, delPost, t}) => {
     return (
         post.id ?
             <Card
@@ -29,7 +27,7 @@ const Post = ({posts, post, id, users, updatedPost, delPost}) => {
                 />}
 
             >
-                <p>Author: {<Link to={`/users/${post.userId}/posts`}>
+                <p>{t('postsSection.author')}: {<Link to={`/users/${post.userId}/posts`}>
                     {userNameByPostId(users, post.userId)}</Link>}
                 </p>
                 <p>{// the same as above but with body rather than title
@@ -43,4 +41,6 @@ const Post = ({posts, post, id, users, updatedPost, delPost}) => {
     )
 }
 
-export default Post
+const PostWithTranslation = withTranslation()(Post)
+
+export default PostWithTranslation
