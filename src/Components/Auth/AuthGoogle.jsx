@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 class AuthGoogle extends PureComponent {
 
     handleClick = () => {
-        this.props.createUser(this.props.users)
+        this.props.createUser()
     }
 
 
