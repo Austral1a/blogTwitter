@@ -3,9 +3,10 @@ import firebase from "firebase";
 import provider from "../../Auth/googleAuthProvider";
 import isUserEmailExists from '../../helpers/isUserEmailExists'
 
-const createUserAction = (userId) => ({
+const createUserAction = (userId, isUserNew) => ({
     type: CREATE_USER,
-    userId
+    userId,
+    isUserNew
 })
 
 const createUserActionCreator = () => {
@@ -30,12 +31,12 @@ const createUserActionCreator = () => {
                             }
                         })
                             .then(res => res.json())
-                            .then(newUser => dispatch(createUserAction(newUser.id)))
+                            .then(newUser => dispatch(createUserAction(newUser.id, true)))
                     // if the user's email already exists in db, then only grab his id, and let him log in
                     } else {
                         fetch(`http://localhost:3000/users?email=${userEmail}`)
                             .then(res => res.json())
-                            .then(existedUser => dispatch(createUserAction(existedUser[0].id)))
+                            .then(existedUser => dispatch(createUserAction(existedUser[0].id, false)))
                     }
                 })
             })
