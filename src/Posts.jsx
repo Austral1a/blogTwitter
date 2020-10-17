@@ -25,7 +25,9 @@ class Posts extends Component {
 
     shouldComponentUpdate(nextProps) {
         if(nextProps.posts !== this.props.posts) return true
-        if(nextProps.updatedPost !== this.props.updatedPost) return true
+        if(this.props.updatedPost) {
+            if(nextProps.updatedPost !== this.props.updatedPost) return true
+        }
     }
 
     componentDidMount() {
