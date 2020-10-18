@@ -40,7 +40,7 @@ You will also see any lint errors in the console.
 
 ### `npm run json:server`
 Launches json server, to be able to send requests and get the responses from the server.<br>
-Port is 3001
+Port is 3000
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
