@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import PostComments from './PostComments'
 import {Divider, Collapse} from 'antd'
