@@ -11,11 +11,10 @@ const PostToolbar = ({
     body
 }) => {
     return (
-        <>
+        <div>
             <ConnectedUpdatePost
                 title={title}
                 body={body}
-                posts={posts}
                 postId={postId}
             />
             <DelPost
@@ -23,7 +22,7 @@ const PostToolbar = ({
                 posts={posts}
                 delPost={delPost}
             />
-        </>
+        </div>
     )
 }
 
