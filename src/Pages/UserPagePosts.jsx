@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {Empty} from 'antd'
 import {connect} from 'react-redux'
 import getUserPostsActionCreator from '../Store/actions/getUserPosts'
-import getPostCommentsActionCreator from "../Store/actions/getPostComments";
+import getPostCommentsActionCreator from '../Store/actions/getPostComments'
 import delPostActionCreator from '../Store/actions/delPost'
 import PropTypes from 'prop-types'
 import Post from '../Post'
@@ -11,7 +11,6 @@ import {withTranslation} from 'react-i18next'
 const mapStateToProps = (state) => ({
     posts: state.getUserPostsReducer.posts,
     currUserId: state.getCurrUserIdReducer.userId,
-    comments: state.getPostCommentsReducer.comments,
     users: state.getUsersReducer.users,
     isPostUpdated: state.updPostReducer.isPostUpdated
 })
@@ -28,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-class UserPagePosts extends Component {
+class UserPagePosts extends PureComponent {
 
     componentDidMount() {
         this.props.getUserPosts(localStorage.getItem('curr_user_id'))
@@ -51,6 +50,7 @@ class UserPagePosts extends Component {
                     posts.length > 0 ? Object.values(posts).map((post, id) => {
                         return (
                             <Post
+                                key={Math.random()}
                                 posts={posts}
                                 id={id}
                                 post={post}
@@ -68,7 +68,6 @@ class UserPagePosts extends Component {
 UserPagePosts.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     currUserId: PropTypes.number,
-    comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     getUserPosts: PropTypes.func.isRequired,
     getPostComments: PropTypes.func.isRequired,
