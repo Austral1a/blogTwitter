@@ -32,12 +32,18 @@ const createUserActionCreator = () => {
                             }
                         })
                             .then(res => res.json())
-                            .then(newUser => dispatch(createUserAction(newUser.id, true)))
+                            .then(newUser => {
+                                localStorage.setItem('LOGGED_USER_ID', newUser.id)
+                                dispatch(createUserAction(newUser.id, true))
+                            })
                     // if the user's email already exists in db, then only grab his id, and let him log in
                     } else {
                         fetch(`${url}/users?email=${userEmail}`)
                             .then(res => res.json())
-                            .then(existedUser => dispatch(createUserAction(existedUser[0].id, false)))
+                            .then(existedUser => {
+                                localStorage.setItem('LOGGED_USER_ID', existedUser[0].id)
+                                dispatch(createUserAction(existedUser[0].id, false))
+                            })
                     }
                 })
             })
