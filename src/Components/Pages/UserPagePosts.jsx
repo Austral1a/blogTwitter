@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react'
 import {Empty} from 'antd'
 import {connect} from 'react-redux'
 import getUserPostsActionCreator from '../../Store/actions/getUserPosts'
-import getPostCommentsActionCreator from '../../Store/actions/getPostComments'
 import delPostActionCreator from '../../Store/actions/delPost'
 import PropTypes from 'prop-types'
 import Post from '../Post'
@@ -20,9 +19,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getUserPosts: (userId) => {
         dispatch(getUserPostsActionCreator(userId))
-    },
-    getPostComments: (postId) => {
-        dispatch(getPostCommentsActionCreator(postId))
     },
     delPost: (postId) => {
         dispatch(delPostActionCreator(postId))
@@ -58,7 +54,7 @@ class UserPagePosts extends PureComponent {
                     posts.length > 0 ? Object.values(posts).map((post, id) => {
                         return (
                             <Post
-                                key={Math.random()}
+                                key={post.title + post.id}
                                 posts={posts}
                                 id={id}
                                 post={post}
@@ -75,10 +71,10 @@ class UserPagePosts extends PureComponent {
 
 UserPagePosts.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    currUserId: PropTypes.number,
-    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     getUserPosts: PropTypes.func.isRequired,
-    getPostComments: PropTypes.func.isRequired,
+    isPostUpdated: PropTypes.bool,
+    isPostDel: PropTypes.bool,
+    isPostCreated: PropTypes.bool,
     delPost: PropTypes.func.isRequired
 }
 
