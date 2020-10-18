@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import ConnectedCommentsSection from './CommentsSection'
 import {Link} from 'react-router-dom'
 import {Card} from 'antd'
@@ -6,7 +7,15 @@ import PostToolbar from './CRUD/Post/PostToolbar'
 import {withTranslation} from 'react-i18next'
 import userNameByUserId from '../helpers/userNameByUserId'
 
-const Post = ({post, id, users, delPost, t}) => {
+import getCurrUserIdActionCreator from "../Store/actions/getCurrUserId";
+
+const mapDispatchToProps = (dispatch) => ({
+    getCurrUserId: (id) => {
+        dispatch(getCurrUserIdActionCreator(id))
+    }
+})
+
+const Post = ({post, id, users, delPost, t, getCurrUserId}) => {
     return (
         post.id ?
             <Card
@@ -14,7 +23,9 @@ const Post = ({post, id, users, delPost, t}) => {
             >
                 <h3>{post.title}</h3>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <p>{t('postsSection.author')}: {<Link to={`/users/${post.userId}/posts`}>
+                    <p>{t('postsSection.author')}: {<Link
+                        onClick={() => getCurrUserId(post.userId)}
+                        to={`/users/${post.userId}/posts`}>
                         {userNameByUserId(users, post.userId)}</Link>}
                     </p>
                     <PostToolbar
@@ -32,6 +43,9 @@ const Post = ({post, id, users, delPost, t}) => {
     )
 }
 
-const PostWithTranslation = withTranslation()(Post)
+const ConenctedPostWithTranslation = connect(
+    null,
+    mapDispatchToProps
+)(withTranslation()(Post))
 
-export default PostWithTranslation
+export default ConenctedPostWithTranslation
