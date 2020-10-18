@@ -16,7 +16,7 @@ const LanguageSwitcher = ({i18n}) => {
     }
 
     return (
-        <Switch onChange={handleChange} checked={currLang === 'ru' ?? true} checkedChildren="Ru" unCheckedChildren="En" />
+        <Switch style={{position: "absolute", top: '25px', right: '30%'}} onChange={handleChange} checked={currLang === 'ru' ?? true} checkedChildren="Ru" unCheckedChildren="En" />
     )
 }
 
