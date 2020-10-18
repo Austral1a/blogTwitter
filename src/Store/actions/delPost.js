@@ -1,17 +1,20 @@
 import {DEL_POST} from './action-types'
 
-const delPostAction = (posts) => ({
+const delPostAction = (isDeleted) => ({
     type: DEL_POST,
-    posts
+    isDeleted
 })
 
-const delPostActionCreator = (posts, postId) => {
+const delPostActionCreator = (postId) => {
     return (dispatch) => {
-        let id = posts.findIndex(post => {
-            return post.id === postId
+        fetch(`http://localhost:3000/posts/${postId}`, {
+            method: 'DELETE'
         })
-        posts.splice(id, 1)
-        dispatch(delPostAction(posts.concat({})))
+            // if post has been deleted successfully
+            .then(() => dispatch(delPostAction(true)))
+            // after successful deleting, set again false
+            .then(() => dispatch(delPostAction(false)))
+            .catch(() => dispatch(delPostAction(false)))
     }
 }
 
