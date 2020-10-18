@@ -5,7 +5,6 @@ import ConnectedUsers from './Users/Users'
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import ConnectedPosts from "./Pages/PostsPage";
 import ConnectedUserPagePosts from './Pages/UserPagePosts'
-import firebase from 'firebase'
 import {Button} from 'antd'
 import {ThemeProvider} from 'styled-components'
 import {GlobalStyles} from '../globalStyles'
@@ -14,7 +13,6 @@ import LanguageSwitcher from './LanguageSwitcher'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 import SignOutGoogle from './Auth/SignOutGoogle'
-import '../styles/auth-container.scss'
 
 const mapStateToProps = (state) => ({
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
@@ -37,8 +35,6 @@ class MainContainer extends PureComponent {
     }
 
     componentDidMount() {
-        // firebase.auth().signOut()
-
         // get current theme mode from localStorage
         this.setState({theme: localStorage.getItem('theme')})
     }
