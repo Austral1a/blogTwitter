@@ -4,7 +4,6 @@ import {DeleteOutlined} from '@ant-design/icons'
 import PropTypes from 'prop-types'
 
 const DelPost = ({
-    posts,
     postId,
     delPost
 }) => {
@@ -14,14 +13,12 @@ const DelPost = ({
             type='dashed'
             shape='circle'
             icon={<DeleteOutlined style={{ fontSize: '16px', color: '#1DA1F2' }} />}
-            onClick={() => {
-                delPost(posts, postId)}}
+            onClick={() => delPost(postId)}
         />
     )
 }
 
 DelPost.propTypes = {
-    posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     postId: PropTypes.number.isRequired,
     delPost: PropTypes.func.isRequired
 }
