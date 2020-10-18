@@ -18,10 +18,6 @@ const mapStateToProps = (state) => ({
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
 })
 
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
 class MainContainer extends PureComponent {
 
     constructor(props) {
@@ -55,13 +51,13 @@ class MainContainer extends PureComponent {
     }
 
     render() {
-        const {t} = this.props
+        const {t, isUserSignedIn} = this.props
         return(
             <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
                 <GlobalStyles />
                 <Router>
                     {
-                        !this.props.isUserSignedIn ?
+                        !isUserSignedIn ?
                             <div className='auth-container'>
                                 <h2>{t('mainSection.signIn')}</h2>
                                 <AuthGoogle />
@@ -95,7 +91,6 @@ MainContainer.propTypes = {
 
 const ConnectedMainContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
 )(withTranslation()(MainContainer))
 
 export default ConnectedMainContainer
