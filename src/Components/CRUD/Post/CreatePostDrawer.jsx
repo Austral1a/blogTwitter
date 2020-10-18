@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import CreatePostForm from './CreatePostForm'
-import {Popover, Button} from 'antd';
+import {Popover, Button} from 'antd'
 import {DiffOutlined} from '@ant-design/icons'
 import createPostActionCreator from '../../../Store/actions/createPost'
 import PropTypes from 'prop-types'
@@ -36,8 +36,8 @@ class CreatePostDrawer extends PureComponent {
     hide = () => {
         this.setState({
             visible: false,
-        });
-    };
+        })
+    }
 
     handleVisibleChange = visible => {
         this.setState({ visible });
