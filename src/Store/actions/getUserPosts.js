@@ -7,7 +7,7 @@ const getUserPosts = (posts) => ({
 
 export const getUserPostsActionCreator = (userId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/posts/?userId=${userId}`)
+        fetch(`http://localhost:3000/users/${userId}/posts`)
             .then(res => res.json())
             .then(json => dispatch(getUserPosts(json)))
     }
