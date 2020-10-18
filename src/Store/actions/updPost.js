@@ -1,4 +1,5 @@
 import {UPD_POST} from './action-types'
+import url from '../../serverUrl'
 
 const updPostAction = (isPostUpdated) => ({
     type: UPD_POST,
@@ -7,7 +8,7 @@ const updPostAction = (isPostUpdated) => ({
 
 const updPostActionCreator = (postId, title, body) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/posts/${postId}`, {
+        fetch(`${url}/posts/${postId}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title: title,

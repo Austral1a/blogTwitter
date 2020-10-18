@@ -1,4 +1,5 @@
 import {DEL_POST} from './action-types'
+import url from '../../serverUrl'
 
 const delPostAction = (isDeleted) => ({
     type: DEL_POST,
@@ -7,7 +8,7 @@ const delPostAction = (isDeleted) => ({
 
 const delPostActionCreator = (postId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/posts/${postId}`, {
+        fetch(`${url}/posts/${postId}`, {
             method: 'DELETE'
         })
             // if post has been deleted successfully

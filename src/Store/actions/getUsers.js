@@ -1,4 +1,5 @@
 import {GET_USERS} from './action-types'
+import url from '../../serverUrl'
 
 const getUsers = (users) => ({
     type: GET_USERS,
@@ -7,7 +8,7 @@ const getUsers = (users) => ({
 
 export const getUsersActionCreator = () => {
     return (dispatch) => {
-        fetch('http://localhost:3000/users')
+        fetch(`${url}/users`)
             .then(res => res.json())
             .then(json => dispatch(getUsers(json)))
     }

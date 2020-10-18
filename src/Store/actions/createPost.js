@@ -1,4 +1,5 @@
 import {CREATE_POST} from './action-types'
+import url from '../../serverUrl'
 
 const createPostAction = (isPostCreated) => ({
     type: CREATE_POST,
@@ -7,7 +8,7 @@ const createPostAction = (isPostCreated) => ({
 
 const createPostActionCreator = (userId, title, body) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/posts`, {
+        fetch(`${url}/posts`, {
             method: 'POST',
             body: JSON.stringify({
                 title: title,

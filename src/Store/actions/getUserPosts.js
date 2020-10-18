@@ -1,4 +1,5 @@
 import {GET_USER_POSTS} from './action-types'
+import url from '../../serverUrl'
 
 const getUserPosts = (posts) => ({
     type: GET_USER_POSTS,
@@ -7,7 +8,7 @@ const getUserPosts = (posts) => ({
 
 export const getUserPostsActionCreator = (userId) => {
     return (dispatch) => {
-        fetch(`http://localhost:3000/users/${userId}/posts`)
+        fetch(`${url}/users/${userId}/posts`)
             .then(res => res.json())
             .then(json => dispatch(getUserPosts(json)))
     }
