@@ -6,7 +6,7 @@ import PostToolbar from './CRUD/Post/PostToolbar'
 import {withTranslation} from 'react-i18next'
 import userNameByPostId from './helpers/userNameByPostId'
 
-const Post = ({posts, post, id, users, delPost, t}) => {
+const Post = ({post, id, users, delPost, t}) => {
     return (
         post.id ?
             <Card
@@ -21,7 +21,7 @@ const Post = ({posts, post, id, users, delPost, t}) => {
                         title={post.title}
                         body={post.body}
                         postId={post.id}
-                        delPost={() => delPost(posts, post.id)}
+                        delPost={() => delPost(post.id)}
                     />
                 </div>
                 <p>{post.body}</p>
