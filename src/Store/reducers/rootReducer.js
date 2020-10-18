@@ -7,6 +7,7 @@ import getPostCommentsReducer from './getPostCommentsReducer'
 import updPostReducer from './updPostReducer'
 import isUserSignedInReducer from './isUserSignedInReducer'
 import createUserReducer from "./createUserReducer";
+import delPostReducer from './delPostReducer'
 
 export const rootReducer = combineReducers({
     getUsersReducer,
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
     getCurrUserIdReducer,
     getPostCommentsReducer,
     updPostReducer,
-    isUserSignedInReducer
+    isUserSignedInReducer,
+    delPostReducer
 })
