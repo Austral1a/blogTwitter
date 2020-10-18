@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import PostComments from './PostComments'
 import {Divider, Collapse} from 'antd'
 import PropTypes from 'prop-types'
-import getPostCommentsActionCreator from "./Store/actions/getPostComments";
+import getPostCommentsActionCreator from '../Store/actions/getPostComments'
 import {withTranslation} from 'react-i18next'
 
 const mapStateToProps = (state) => ({

@@ -1,15 +1,15 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import AuthGoogle from "./Components/Auth/AuthGoogle";
-import ConnectedUsers from "./Users/Users";
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import AuthGoogle from './Auth/AuthGoogle'
+import ConnectedUsers from './Users/Users'
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import ConnectedPosts from "./Posts";
-import ConnectedUserPagePosts from "./Pages/UserPagePosts";
+import ConnectedUserPagePosts from './Pages/UserPagePosts'
 import firebase from 'firebase'
 import {Button} from 'antd'
 import {ThemeProvider} from 'styled-components'
-import {GlobalStyles} from './globalStyles'
-import {lightTheme, darkTheme} from './themes'
+import {GlobalStyles} from '../globalStyles'
+import {lightTheme, darkTheme} from '../themes'
 import LanguageSwitcher from './LanguageSwitcher'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'

@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import delPostActionCreator from './Store/actions/delPost'
+import delPostActionCreator from '../Store/actions/delPost'
 import PropTypes from 'prop-types'
-import getAllPostsActionCreator from "./Store/actions/getAllPosts";
+import getAllPostsActionCreator from '../Store/actions/getAllPosts'
 import Post from './Post'
-import {Empty} from "antd";
+import {Empty} from 'antd'
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,

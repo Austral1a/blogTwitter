@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import updPostActionCreator from '../../Store/actions/updPost'
+import updPostActionCreator from '../../../Store/actions/updPost'
 import {Drawer, Button, Form, Col, Row, Input} from 'antd'
-import {EditOutlined} from "@ant-design/icons";
+import {EditOutlined} from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 

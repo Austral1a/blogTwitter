@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {Card} from 'antd'
 import PostToolbar from './CRUD/Post/PostToolbar'
 import {withTranslation} from 'react-i18next'
-import userNameByPostId from './helpers/userNameByPostId'
+import userNameByPostId from '../helpers/userNameByPostId'
 
 const Post = ({post, id, users, delPost, t}) => {
     return (

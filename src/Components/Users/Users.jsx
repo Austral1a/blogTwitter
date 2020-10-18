@@ -1,11 +1,11 @@
 import React, {PureComponent} from 'react'
-import isUserSignedInActionCreator from '../Store/actions/isUserSignedIn'
-import {getUsersActionCreator} from "../Store/actions/getUsers";
-import getUserPostsActionCreator from '../Store/actions/getUserPosts'
+import isUserSignedInActionCreator from '../../Store/actions/isUserSignedIn'
+import {getUsersActionCreator} from '../../Store/actions/getUsers'
+import getUserPostsActionCreator from '../../Store/actions/getUserPosts'
 import {connect} from 'react-redux'
 import {List} from "antd";
 import {Link} from "react-router-dom";
-import getCurrUserIdActionCreator from '../Store/actions/getCurrUserId'
+import getCurrUserIdActionCreator from '../../Store/actions/getCurrUserId'
 import ConnectedCreatePostDrawer from '../CRUD/Post/CreatePostDrawer'
 import {withTranslation} from 'react-i18next'
 import PropTypes from 'prop-types'

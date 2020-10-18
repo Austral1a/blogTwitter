@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase'
-import ConnectedMainContainer from './MainContainer'
+import ConnectedMainContainer from './Components/MainContainer'
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import store from './Store/index'

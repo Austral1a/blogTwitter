@@ -1,6 +1,6 @@
-import React from "react";
-import {Button} from "antd";
-import {DeleteOutlined} from "@ant-design/icons";
+import React from 'react'
+import {Button} from 'antd'
+import {DeleteOutlined} from '@ant-design/icons'
 import PropTypes from 'prop-types'
 
 const DelPost = ({

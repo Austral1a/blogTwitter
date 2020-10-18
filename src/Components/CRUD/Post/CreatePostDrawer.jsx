@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import CreatePostForm from './CreatePostForm'
 import {Popover, Button} from 'antd';
 import {DiffOutlined} from '@ant-design/icons'
-import createPostActionCreator from '../../Store/actions/createPost'
+import createPostActionCreator from '../../../Store/actions/createPost'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 
