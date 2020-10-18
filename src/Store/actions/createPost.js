@@ -1,14 +1,13 @@
 import {CREATE_POST} from './action-types'
 
-const createPostAction = (userPosts, posts) => ({
+const createPostAction = (isPostCreated) => ({
     type: CREATE_POST,
-    posts: posts || [],
-    userPosts: userPosts || []
+    isPostCreated
 })
 
-const createPostActionCreator = (userPosts, posts, title, body, userId) => {
+const createPostActionCreator = (userId, title, body) => {
     return (dispatch) => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        fetch(`http://localhost:3000/posts`, {
             method: 'POST',
             body: JSON.stringify({
                 title: title,
@@ -19,10 +18,11 @@ const createPostActionCreator = (userPosts, posts, title, body, userId) => {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-            .then((res) => res.json())
-            .then((json) => {
-                dispatch(createPostAction(userPosts.concat(json), posts.concat(json)))
-            })
+            // if user successfully created a post
+            .then(() => dispatch(createPostAction(true)))
+            // after successful creating a post then set again false
+            .then(() => dispatch(createPostAction(false)))
+            .catch(() => dispatch(createPostAction(false)))
     }
 }
 
