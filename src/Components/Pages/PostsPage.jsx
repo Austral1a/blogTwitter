@@ -40,7 +40,7 @@ class PostsPage extends PureComponent {
         }
         // re-render if user created a post
         if(prevProps.isPostCreated !== this.props.isPostCreated) {
-            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
+            this.props.getAllPosts()
         }
     }
 
@@ -55,8 +55,8 @@ class PostsPage extends PureComponent {
                                     key={Math.random()}
                                     posts={posts}
                                     post={post}
-                                    id={id}
                                     users={users}
+                                    id={id}
                                     delPost={delPost}
                                 />
                         )
