@@ -10,7 +10,7 @@ const Post = ({post, id, users, delPost, t}) => {
     return (
         post.id ?
             <Card
-                key={id + Math.random()}
+                key={id + post.title}
             >
                 <h3>{post.title}</h3>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
