@@ -8,8 +8,8 @@ import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 
 const mapDispatchToProps = (dispatch) => ({
-    createPost: (userPosts, posts, title, body, userId) => {
-        dispatch(createPostActionCreator(userPosts, posts, title, body, userId))
+    createPost: (userId, title, body) => {
+        dispatch(createPostActionCreator(userId, title, body))
     }
 })
 
@@ -45,7 +45,7 @@ class CreatePostDrawer extends PureComponent {
 
     render() {
         const {title, body} = this.state
-        const {createPost, posts, userId, userPosts, t} = this.props
+        const {createPost, userId, t} = this.props
         return(
             <div style={{margin: 'auto'}}>
                 <Popover
@@ -57,7 +57,7 @@ class CreatePostDrawer extends PureComponent {
                                 bodyState={body}
                                 onChangeTitle={(e) => this.onChangeTitle(e)}
                                 onChangeBody={(e) => this.onChangeBody(e)}
-                                onFinish={() => createPost(userPosts, posts, title, body, userId)} />
+                                onFinish={() => createPost(userId, title, body)} />
                             <a onClick={this.hide}>{t('btnActions.close')}</a>
                         </>
                         }
