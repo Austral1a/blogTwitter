@@ -9,7 +9,8 @@ import {Empty} from "antd";
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
     users: state.getUsersReducer.users,
-    isPostUpdated: state.updPostReducer.isPostUpdated
+    isPostUpdated: state.updPostReducer.isPostUpdated,
+    isPostDel: state.delPostReducer.isDeleted
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,6 +29,9 @@ class Posts extends PureComponent {
     }
     componentDidUpdate(prevProps) {
         if(prevProps.isPostUpdated !== this.props.isPostUpdated) {
+            this.props.getAllPosts()
+        }
+        if(prevProps.isPostDel !== this.props.isPostDel) {
             this.props.getAllPosts()
         }
     }
