@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react'
 import isUserSignedInActionCreator from '../../Store/actions/isUserSignedIn'
 import {getUsersActionCreator} from '../../Store/actions/getUsers'
-import getUserPostsActionCreator from '../../Store/actions/getUserPosts'
 import {connect} from 'react-redux'
 import {List} from "antd";
 import {Link} from "react-router-dom";
@@ -12,8 +11,6 @@ import PropTypes from 'prop-types'
 
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
-    posts: state.getAllPostsReducer.posts,
-    userPosts: state.getUserPostsReducer.posts,
     isUserSignedUp: state.createUserReducer.isUserNew,
     currUserId: state.getCurrUserIdReducer.userId,
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
@@ -28,9 +25,6 @@ const mapDispatchToProps = (dispatch) => ({
     },
     isUserSignedInCheck: () => {
         dispatch(isUserSignedInActionCreator())
-    },
-    getUserPosts: (userId) => {
-        dispatch(getUserPostsActionCreator(userId))
     }
 })
 
@@ -49,16 +43,16 @@ class Users extends PureComponent {
     }
 
     render() {
-        const {t} = this.props
+        const {isUserSignedIn, currUserId, users, getCurrUserId, t} = this.props
         return (
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
-                header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer
+                header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, isUserSignedIn ? <ConnectedCreatePostDrawer
                     key={Math.random()}
-                    userId={this.props.currUserId} /> : null]}
+                    userId={currUserId} /> : null]}
                 // dataSource is array for list
-                dataSource={Object.values(this.props.users)}
+                dataSource={Object.values(users)}
                 // adds border
                 bordered
                 size='small'
@@ -67,7 +61,7 @@ class Users extends PureComponent {
                     <List.Item>
                         <List.Item.Meta
                             title={<Link
-                                onClick={() => this.props.getCurrUserId(user.id)}
+                                onClick={() => getCurrUserId(user.id)}
                                 to={`/users/${user.id}/posts`}>{user.name}</Link>}
                             description={user.email}
                         />
@@ -83,13 +77,11 @@ class Users extends PureComponent {
 Users.propTypes = {
     users: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     isUserSignedIn: PropTypes.bool,
-    posts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    userPosts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    getUsers: PropTypes.func.isRequired,
-    getCurrUserId: PropTypes.func.isRequired,
-    isUserSignedInCheck: PropTypes.func.isRequired,
-    getUserPosts: PropTypes.func.isRequired,
-    getAllPosts: PropTypes.func.isRequired,
+    getUsers: PropTypes.func,
+    getCurrUserId: PropTypes.func,
+    isUserSignedInCheck: PropTypes.func,
+    isUserSignedUp: PropTypes.bool,
+    currUserId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 const ConnectedUsers = connect(
