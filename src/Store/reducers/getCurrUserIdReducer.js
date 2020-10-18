@@ -1,7 +1,9 @@
 import {GET_CURR_USER_ID} from '../actions/action-types'
 
 const initState = {
-    userId: null
+    // grab curr user id from local storage if it exists there or null if it isnt
+    // this is needs to render particular user posts
+    userId: localStorage.getItem('curr_user_id') || null
 }
 
 const getCurrUserIdReducer = (state = initState, action) => {
