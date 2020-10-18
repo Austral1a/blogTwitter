@@ -57,7 +57,7 @@ class CreatePostDrawer extends PureComponent {
                                 bodyState={body}
                                 onChangeTitle={(e) => this.onChangeTitle(e)}
                                 onChangeBody={(e) => this.onChangeBody(e)}
-                                onFinish={() => createPost(userId, title, body)} />
+                                onFinish={() => createPost(Number(localStorage.getItem('LOGGED_USER_ID')), title, body)} />
                             <a onClick={this.hide}>{t('btnActions.close')}</a>
                         </>
                         }
