@@ -5,21 +5,23 @@ import PropTypes from 'prop-types'
 import getAllPostsActionCreator from '../../Store/actions/getAllPosts'
 import Post from '../Post'
 import {Empty} from 'antd'
+import {withTranslation} from 'react-i18next'
 
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
     users: state.getUsersReducer.users,
     isPostUpdated: state.updPostReducer.isPostUpdated,
-    isPostDel: state.delPostReducer.isDeleted
+    isPostDel: state.delPostReducer.isDeleted,
+    isPostCreated: state.createPostReducer.isCreated
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    delPost: (posts, postId) => {
-        dispatch(delPostActionCreator(posts, postId))
+    delPost: (postId) => {
+        dispatch(delPostActionCreator(postId))
     },
     getAllPosts: () => {
         dispatch(getAllPostsActionCreator())
-    },
+    }
 })
 
 class PostsPage extends PureComponent {
@@ -28,16 +30,22 @@ class PostsPage extends PureComponent {
         this.props.getAllPosts()
     }
     componentDidUpdate(prevProps) {
+        // re-render if user updated a post
         if(prevProps.isPostUpdated !== this.props.isPostUpdated) {
             this.props.getAllPosts()
         }
+        // re-render if user deleted a post
         if(prevProps.isPostDel !== this.props.isPostDel) {
             this.props.getAllPosts()
+        }
+        // re-render if user created a post
+        if(prevProps.isPostCreated !== this.props.isPostCreated) {
+            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
     }
 
     render() {
-        const {posts, users, delPost} = this.props
+        const {posts, users, delPost, t} = this.props
         return(
             <div className='posts-container'>
                 {
@@ -52,7 +60,7 @@ class PostsPage extends PureComponent {
                                     delPost={delPost}
                                 />
                         )
-                    }): <Empty description='There are no posts' />
+                    }): <Empty description={t('postsSection.noPosts')} />
                 }
             </div>
         )
@@ -62,14 +70,17 @@ class PostsPage extends PureComponent {
 PostsPage.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    comments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    updatedPost: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    isPostUpdated: PropTypes.bool,
+    isPostDel: PropTypes.bool,
+    isPostCreated: PropTypes.bool,
+    delPost: PropTypes.func.isRequired,
+    getAllPosts: PropTypes.func.isRequired
 }
 
 const ConnectedPosts = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostsPage)
+)(withTranslation()(PostsPage))
 
 
 export default ConnectedPosts
