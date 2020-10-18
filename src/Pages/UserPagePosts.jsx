@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
     currUserId: state.getCurrUserIdReducer.userId,
     comments: state.getPostCommentsReducer.comments,
     users: state.getUsersReducer.users,
-    updatedPost: state.updPostReducer.updatedPost
+    isPostUpdated: state.updPostReducer.isPostUpdated
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -30,45 +30,37 @@ const mapDispatchToProps = (dispatch) => ({
 
 class UserPagePosts extends Component {
 
-    shouldComponentUpdate(nextProps) {
-        if(nextProps.currUserId !== this.props.currUserId) return true
-        if(nextProps.posts !== this.props.posts) return true
-        if(nextProps.updatedPost !== this.props.updatedPost) return true
-    }
-
     componentDidMount() {
-        // default val of currUserId is null, so after reloading currUserId is takes from localStorage
-        this.props.getUserPosts(this.props.currUserId || localStorage.getItem('curr_user_id'))
+        this.props.getUserPosts(localStorage.getItem('curr_user_id'))
     }
 
-    // when current user id is changed, please re-render the component to correspond new id
     componentDidUpdate(prevProps) {
         if(prevProps.currUserId !== this.props.currUserId) {
-            this.props.getUserPosts(this.props.currUserId)
+            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
+        }
+        if(prevProps.isPostUpdated !== this.props.isPostUpdated) {
+            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
     }
 
     render() {
-        const {posts, users, updatedPost, delPost, t} = this.props
+        const {posts, users, delPost, t} = this.props
         return (
-            <>
-                <div className='posts-container'>
-                    {
-                        posts.length > 0 ? Object.values(posts).map((post, id) => {
-                            return (
-                                <Post
-                                    posts={posts}
-                                    id={id}
-                                    post={post}
-                                    users={users}
-                                    updatedPost={updatedPost}
-                                    delPost={delPost}
-                                />
-                            )
-                        }): <Empty description={t('postsSection.noPosts')} />
-                    }
-                </div>
-            </>
+            <div className='posts-container'>
+                {
+                    posts.length > 0 ? Object.values(posts).map((post, id) => {
+                        return (
+                            <Post
+                                posts={posts}
+                                id={id}
+                                post={post}
+                                users={users}
+                                delPost={delPost}
+                            />
+                        )
+                    }): <Empty description={t('postsSection.noPosts')} />
+                }
+            </div>
         )
     }
 }
