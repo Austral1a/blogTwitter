@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "json:server": "json-server --watch -p 3001 db.json"
+    "json:server": "json-server --watch db.json"
   },
   "eslintConfig": {
     "extends": "react-app"
