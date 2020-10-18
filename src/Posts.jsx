@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import delPostActionCreator from './Store/actions/delPost'
 import PropTypes from 'prop-types'
@@ -9,7 +9,7 @@ import {Empty} from "antd";
 const mapStateToProps = (state) => ({
     posts: state.getAllPostsReducer.posts,
     users: state.getUsersReducer.users,
-    updatedPost: state.updPostReducer.updatedPost
+    isPostUpdated: state.updPostReducer.isPostUpdated
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,14 +21,19 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-class Posts extends Component {
+class Posts extends PureComponent {
 
     componentDidMount() {
         this.props.getAllPosts()
     }
+    componentDidUpdate(prevProps) {
+        if(prevProps.isPostUpdated !== this.props.isPostUpdated) {
+            this.props.getAllPosts()
+        }
+    }
 
     render() {
-        const {posts, users, updatedPost, delPost} = this.props
+        const {posts, users, delPost} = this.props
         return(
             <div className='posts-container'>
                 {
@@ -40,7 +45,6 @@ class Posts extends Component {
                                     post={post}
                                     id={id}
                                     users={users}
-                                    updatedPost={updatedPost}
                                     delPost={delPost}
                                 />
                         )
