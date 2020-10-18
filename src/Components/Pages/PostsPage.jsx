@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import delPostActionCreator from '../Store/actions/delPost'
+import delPostActionCreator from '../../Store/actions/delPost'
 import PropTypes from 'prop-types'
-import getAllPostsActionCreator from '../Store/actions/getAllPosts'
-import Post from './Post'
+import getAllPostsActionCreator from '../../Store/actions/getAllPosts'
+import Post from '../Post'
 import {Empty} from 'antd'
 
 const mapStateToProps = (state) => ({
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-class Posts extends PureComponent {
+class PostsPage extends PureComponent {
 
     componentDidMount() {
         this.props.getAllPosts()
@@ -59,7 +59,7 @@ class Posts extends PureComponent {
     }
 }
 
-Posts.propTypes = {
+PostsPage.propTypes = {
     posts: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     users: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     comments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -69,7 +69,7 @@ Posts.propTypes = {
 const ConnectedPosts = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Posts)
+)(PostsPage)
 
 
 export default ConnectedPosts

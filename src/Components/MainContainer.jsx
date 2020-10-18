@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import AuthGoogle from './Auth/AuthGoogle'
 import ConnectedUsers from './Users/Users'
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
-import ConnectedPosts from "./Posts";
+import ConnectedPosts from "./Pages/PostsPage";
 import ConnectedUserPagePosts from './Pages/UserPagePosts'
 import firebase from 'firebase'
 import {Button} from 'antd'
