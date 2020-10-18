@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import AuthGoogle from './Auth/AuthGoogle'
+import ConnectedAuthGoogle from './Auth/AuthGoogle'
 import ConnectedUsers from './Users/Users'
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import ConnectedPosts from "./Pages/PostsPage";
@@ -13,6 +13,8 @@ import {lightTheme, darkTheme} from '../themes'
 import LanguageSwitcher from './LanguageSwitcher'
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
+import SignOutGoogle from './Auth/SignOutGoogle'
+import '../styles/auth-container.scss'
 
 const mapStateToProps = (state) => ({
     isUserSignedIn: state.isUserSignedInReducer.isSignedIn
@@ -34,10 +36,8 @@ class MainContainer extends PureComponent {
             this.setState({theme: 'dark'}) : this.setState({theme: 'light'})
     }
 
-    // cause user doesnt actually creates
-    // user signing out after mounting whole app, i.e on page reload
     componentDidMount() {
-        firebase.auth().signOut()
+        // firebase.auth().signOut()
 
         // get current theme mode from localStorage
         this.setState({theme: localStorage.getItem('theme')})
@@ -57,11 +57,13 @@ class MainContainer extends PureComponent {
                 <GlobalStyles />
                 <Router>
                     {
-                        !isUserSignedIn ?
                             <div className='auth-container'>
-                                <h2>{t('mainSection.signIn')}</h2>
-                                <AuthGoogle />
-                            </div> : null
+                            {!isUserSignedIn ?  <>
+                                                    <h2>{t('mainSection.signIn')}</h2>
+                                                    <ConnectedAuthGoogle />
+                                                </>
+                                : <SignOutGoogle />}
+                            </div>
                     }
                     <LanguageSwitcher i18n={this.props.i18n} />
                     <Button type='primary' onClick={this.themeToggler}>
