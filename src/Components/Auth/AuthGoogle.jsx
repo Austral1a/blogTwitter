@@ -12,8 +12,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    createUser: (users) => {
-        dispatch(createUserActionCreator(users))
+    createUser: () => {
+        dispatch(createUserActionCreator())
     }
 })
 
