@@ -6,10 +6,6 @@ import {EditOutlined} from "@ant-design/icons";
 import PropTypes from 'prop-types'
 import {withTranslation} from 'react-i18next'
 
-const mapStateToProps = (state) => ({
-    updatedPost: state.updPostReducer.updatedPost
-})
-
 const mapDispatchToProps = (dispatch) => ({
     updPost: (postId, title, body) => {
         dispatch(updPostActionCreator(postId, title, body))
@@ -120,7 +116,7 @@ UpdatePost.propTypes = {
 }
 
 const ConnectedUpdatePost = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(withTranslation()(UpdatePost))
 
