@@ -12,7 +12,8 @@ const mapStateToProps = (state) => ({
     posts: state.getUserPostsReducer.posts,
     currUserId: state.getCurrUserIdReducer.userId,
     users: state.getUsersReducer.users,
-    isPostUpdated: state.updPostReducer.isPostUpdated
+    isPostUpdated: state.updPostReducer.isPostUpdated,
+    isPostDel: state.delPostReducer.isDeleted
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,8 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
     getPostComments: (postId) => {
         dispatch(getPostCommentsActionCreator(postId))
     },
-    delPost: (posts, postId) => {
-        dispatch(delPostActionCreator(posts, postId))
+    delPost: (postId) => {
+        dispatch(delPostActionCreator(postId))
     }
 })
 
@@ -38,6 +39,9 @@ class UserPagePosts extends PureComponent {
             this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
         if(prevProps.isPostUpdated !== this.props.isPostUpdated) {
+            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
+        }
+        if(prevProps.isPostDel !== this.props.isPostDel) {
             this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
     }
