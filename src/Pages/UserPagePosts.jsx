@@ -13,7 +13,8 @@ const mapStateToProps = (state) => ({
     currUserId: state.getCurrUserIdReducer.userId,
     users: state.getUsersReducer.users,
     isPostUpdated: state.updPostReducer.isPostUpdated,
-    isPostDel: state.delPostReducer.isDeleted
+    isPostDel: state.delPostReducer.isDeleted,
+    isPostCreated: state.createPostReducer.isCreated
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -42,6 +43,9 @@ class UserPagePosts extends PureComponent {
             this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
         if(prevProps.isPostDel !== this.props.isPostDel) {
+            this.props.getUserPosts(localStorage.getItem('curr_user_id'))
+        }
+        if(prevProps.isPostCreated !== this.props.isPostCreated) {
             this.props.getUserPosts(localStorage.getItem('curr_user_id'))
         }
     }
