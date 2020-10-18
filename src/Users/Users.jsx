@@ -14,7 +14,9 @@ const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
     posts: state.getAllPostsReducer.posts,
     userPosts: state.getUserPostsReducer.posts,
-    isUserSignedUp: state.createUserReducer.isUserNew
+    isUserSignedUp: state.createUserReducer.isUserNew,
+    currUserId: state.getCurrUserIdReducer.userId,
+    isUserSignedIn: state.isUserSignedInReducer.isSignedIn
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -54,9 +56,7 @@ class Users extends PureComponent {
                 itemLayout='horizontal'
                 header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, this.props.isUserSignedIn ? <ConnectedCreatePostDrawer
                     key={Math.random()}
-                    posts={this.props.posts}
-                    userPosts={this.props.userPosts}
-                    userId={this.props.users.length} /> : null]}
+                    userId={this.props.currUserId} /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(this.props.users)}
                 // adds border
