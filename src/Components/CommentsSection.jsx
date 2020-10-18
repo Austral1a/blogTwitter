@@ -49,7 +49,6 @@ const CommentsSection = ({
 CommentsSection.propTypes = {
     post: PropTypes.object,
     comments: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    onChange: PropTypes.func.isRequired
 }
 
 const ConnectedCommentsSection = connect(
