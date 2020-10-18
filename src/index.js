@@ -11,7 +11,7 @@ import './styles/general.scss'
 import './styles/main-container.scss'
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
+    apiKey: 'AIzaSyA9ijLIiz_etxZ12RzixJAme8C08OTb46Y',
     authDomain: "blog-98e20.firebaseapp.com",
     databaseURL: "https://blog-98e20.firebaseio.com",
     projectId: "blog-98e20",
