@@ -12,8 +12,8 @@ import PropTypes from 'prop-types'
 const mapStateToProps = (state) => ({
     users: state.getUsersReducer.users,
     isUserSignedUp: state.createUserReducer.isUserNew,
-    currUserId: state.getCurrUserIdReducer.userId,
-    isUserSignedIn: state.isUserSignedInReducer.isSignedIn
+    isUserSignedIn: state.isUserSignedInReducer.isSignedIn,
+    singedInUserId: state.createUserReducer.userId
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -43,14 +43,14 @@ class Users extends PureComponent {
     }
 
     render() {
-        const {isUserSignedIn, currUserId, users, getCurrUserId, t} = this.props
+        const {isUserSignedIn, singedInUserId, users, getCurrUserId, t} = this.props
         return (
             <List
                 // itemLayout is layout of list
                 itemLayout='horizontal'
                 header={[<Link key={Math.random()} to='/posts'>{t('usersSection.allUsers')}</Link>, isUserSignedIn ? <ConnectedCreatePostDrawer
                     key={Math.random()}
-                    userId={currUserId} /> : null]}
+                    userId={singedInUserId} /> : null]}
                 // dataSource is array for list
                 dataSource={Object.values(users)}
                 // adds border
