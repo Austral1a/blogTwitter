@@ -1,13 +1,13 @@
 import {UPD_POST} from './action-types'
 
-const updPostAction = (updatedPost) => ({
+const updPostAction = (isPostUpdated) => ({
     type: UPD_POST,
-    updatedPost
+    isPostUpdated
 })
 
 const updPostActionCreator = (postId, title, body) => {
     return (dispatch) => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+        fetch(`http://localhost:3000/posts/${postId}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title: title,
@@ -17,8 +17,12 @@ const updPostActionCreator = (postId, title, body) => {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-            .then((response) => response.json())
-            .then((json) => dispatch(updPostAction(json)))
+            .then((res) => res.json())
+            // report that post has been updated
+            .then(() => dispatch(updPostAction(true)))
+            // then report that post is successfully updated
+            .then(() => dispatch(updPostAction(false)))
+            .catch(() => dispatch(updPostAction(false)))
     }
 }
 
