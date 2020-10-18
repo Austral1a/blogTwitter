@@ -106,12 +106,9 @@ class UpdatePost extends PureComponent {
             </>
         )
     }
-
-
 }
 
 UpdatePost.propTypes = {
-    updatedPost: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
     updPost: PropTypes.func.isRequired
 }
 
