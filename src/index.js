@@ -11,7 +11,7 @@ import './styles/general.scss'
 import './styles/main-container.scss'
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyA9ijLIiz_etxZ12RzixJAme8C08OTb46Y',
+    apiKey: '',
     authDomain: "blog-98e20.firebaseapp.com",
     databaseURL: "https://blog-98e20.firebaseio.com",
     projectId: "blog-98e20",
